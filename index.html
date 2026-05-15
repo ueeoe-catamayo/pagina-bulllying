@@ -1,0 +1,2748 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Prevenir el Bullying — Información y Apoyo</title>
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;500;600;700;800;900&family=Fredoka+One&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --blue:#2952ff;
+  --purple:#8b2be2;
+  --pink:#ff1a6e;
+  --teal:#00d4aa;
+  --orange:#ff6a00;
+  --yellow:#ffd700;
+  --bg:linear-gradient(135deg,#0f0c29 0%,#302b63 50%,#24243e 100%);
+  --card:#1e1b4b;
+  --card-bright:#252060;
+  --text:#ffffff;
+  --muted:#b8b5d8;
+  --radius:18px;
+}
+html{scroll-behavior:smooth}
+body{
+  font-family:'Nunito',sans-serif;
+  background:#0f0c29;
+  background-image:linear-gradient(135deg,#0f0c29 0%,#302b63 60%,#24243e 100%);
+  min-height:100vh;
+  color:#fff;
+  overflow-x:hidden;
+}
+
+/* ── HERO ─────────────────────────────────────────── */
+.hero{
+  position:relative;
+  overflow:hidden;
+  padding:70px 24px 100px;
+  text-align:center;
+  background:linear-gradient(135deg,#ff0080 0%,#7928ca 40%,#2952ff 100%);
+}
+.hero::before{
+  content:'';
+  position:absolute;inset:0;
+  background:radial-gradient(circle at 20% 50%,rgba(255,255,255,.08) 0%,transparent 60%),
+             radial-gradient(circle at 80% 20%,rgba(255,255,255,.06) 0%,transparent 50%);
+}
+.bubbles{position:absolute;inset:0;pointer-events:none}
+.bubble{
+  position:absolute;
+  border-radius:50%;
+  background:rgba(255,255,255,.07);
+  animation:floatBubble linear infinite;
+}
+@keyframes floatBubble{
+  0%{transform:translateY(110%) scale(0.8);opacity:0}
+  10%{opacity:1}
+  90%{opacity:.6}
+  100%{transform:translateY(-10%) scale(1.1);opacity:0}
+}
+.hero-content{position:relative;z-index:1}
+.hero-badge{
+  display:inline-block;
+  background:rgba(255,255,255,.15);
+  backdrop-filter:blur(8px);
+  border:1px solid rgba(255,255,255,.25);
+  color:#fff;
+  font-size:13px;font-weight:700;
+  padding:6px 16px;border-radius:20px;
+  margin-bottom:20px;
+  animation:fadeDown .6s ease both;
+}
+.hero h1{
+  font-family:'Fredoka One',cursive;
+  font-size:clamp(2rem,6vw,3.5rem);
+  color:#fff;
+  line-height:1.1;
+  margin-bottom:16px;
+  animation:fadeDown .6s .15s ease both;
+}
+.hero h1 span{color:#f7c948}
+.hero p{
+  font-size:18px;color:rgba(255,255,255,.9);
+  max-width:500px;margin:0 auto 28px;
+  animation:fadeDown .6s .3s ease both;
+}
+.hero-btns{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;animation:fadeDown .6s .45s ease both}
+.btn-hero{
+  padding:12px 28px;border-radius:50px;
+  font-size:15px;font-weight:700;
+  cursor:pointer;border:none;
+  transition:transform .2s,box-shadow .2s;
+  font-family:'Nunito',sans-serif;
+}
+.btn-hero:hover{transform:translateY(-2px);box-shadow:0 8px 24px rgba(0,0,0,.2)}
+.btn-hero.primary{background:#f7c948;color:#fff}
+.btn-hero.outline{background:rgba(255,255,255,.15);color:#fff;border:1.5px solid rgba(255,255,255,.4)}
+.hero-wave{position:absolute;bottom:-1px;left:0;right:0}
+
+@keyframes fadeDown{from{opacity:0;transform:translateY(-20px)}to{opacity:1;transform:translateY(0)}}
+
+/* ── NAV TABS ─────────────────────────────────────── */
+.nav-tabs{
+  display:flex;gap:8px;
+  overflow-x:auto;
+  padding:20px 24px 0;
+  scrollbar-width:none;
+  background:#0f0c29;
+}
+.nav-tabs::-webkit-scrollbar{display:none}
+.tab{
+  flex-shrink:0;
+  padding:10px 20px;
+  border-radius:50px;
+  font-size:14px;font-weight:700;
+  cursor:pointer;border:none;
+  background:#1e1b4b;
+  color:#b8b5d8;
+  box-shadow:0 2px 8px rgba(0,0,0,.3);
+  transition:all .25s;
+  font-family:'Nunito',sans-serif;
+}
+.tab.active{background:linear-gradient(135deg,#ff0080,#7928ca);color:#fff;box-shadow:0 4px 20px rgba(255,0,128,.4)}
+.tab:hover:not(.active){background:#2a2560;color:#fff}
+
+/* ── SECTIONS ─────────────────────────────────────── */
+.section{display:none;padding:24px 24px 48px;animation:sectionIn .4s ease both;background:#0f0c29;min-height:calc(100vh - 200px)}
+.section.active{display:block}
+@keyframes sectionIn{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:translateY(0)}}
+
+/* ── TYPE CARDS (clickable) ───────────────────────── */
+.type-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:16px;margin-bottom:20px}
+.type-card{
+  background:#1e1b4b;
+  border-radius:var(--radius);
+  overflow:hidden;
+  box-shadow:0 4px 20px rgba(0,0,0,.4);
+  cursor:pointer;
+  transition:transform .25s,box-shadow .25s;
+  animation:cardIn .5s ease both;
+  border:2px solid rgba(255,255,255,.1);
+  user-select:none;
+}
+.type-card:hover{transform:translateY(-6px);box-shadow:0 16px 40px rgba(0,0,0,.5)}
+.type-card.selected{box-shadow:0 8px 32px rgba(0,0,0,.4)}
+@keyframes cardIn{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
+.type-card:nth-child(1){animation-delay:.0s}
+.type-card:nth-child(2){animation-delay:.1s}
+.type-card:nth-child(3){animation-delay:.2s}
+.type-card:nth-child(4){animation-delay:.3s}
+.card-top{height:10px}
+.card-body{padding:22px}
+.card-icon-wrap{
+  width:56px;height:56px;border-radius:16px;
+  display:flex;align-items:center;justify-content:center;
+  font-size:26px;margin-bottom:14px;
+  transition:transform .3s;
+}
+.type-card:hover .card-icon-wrap{transform:scale(1.15) rotate(-6deg)}
+.type-card h3{font-size:17px;font-weight:800;margin-bottom:7px;color:#fff}
+.type-card p{font-size:13px;color:#b8b5d8;line-height:1.6}
+.tag-list{display:flex;flex-wrap:wrap;gap:6px;margin-top:12px}
+.tag{font-size:11px;font-weight:700;padding:4px 12px;border-radius:20px}
+.card-hint{font-size:11px;font-weight:700;margin-top:14px;display:flex;align-items:center;gap:4px;opacity:.8;color:#fff}
+
+/* ── DETAIL MODAL (fullscreen overlay) ────────────── */
+.detail-panel{display:none}
+
+.modal-overlay{
+  position:fixed;inset:0;z-index:1000;
+  background:rgba(10,12,30,.55);
+  backdrop-filter:blur(10px);
+  -webkit-backdrop-filter:blur(10px);
+  display:flex;align-items:center;justify-content:center;
+  padding:20px;
+  opacity:0;pointer-events:none;
+  transition:opacity .35s ease;
+}
+.modal-overlay.visible{opacity:1;pointer-events:all}
+
+.modal-card{
+  width:100%;max-width:820px;
+  max-height:calc(100vh - 40px);
+  border-radius:24px;
+  overflow:hidden;
+  display:flex;flex-direction:column;
+  transform:translateY(30px) scale(.97);
+  transition:transform .38s cubic-bezier(.2,.8,.3,1);
+  box-shadow:0 32px 80px rgba(0,0,0,.45);
+}
+.modal-overlay.visible .modal-card{transform:translateY(0) scale(1)}
+
+.modal-header{
+  padding:24px 28px 20px;
+  position:relative;
+  flex-shrink:0;
+}
+.modal-header::after{
+  content:'';position:absolute;bottom:-1px;left:0;right:0;height:1px;
+  background:rgba(255,255,255,.12);
+}
+.modal-back{
+  display:inline-flex;align-items:center;gap:8px;
+  background:rgba(255,255,255,.18);
+  border:1.5px solid rgba(255,255,255,.3);
+  color:#fff;font-size:14px;font-weight:800;
+  padding:8px 18px;border-radius:50px;
+  cursor:pointer;font-family:'Nunito',sans-serif;
+  transition:background .2s,transform .2s;
+  margin-bottom:18px;
+}
+.modal-back:hover{background:rgba(255,255,255,.3);transform:translateX(-3px)}
+.modal-back svg{transition:transform .2s}
+.modal-back:hover svg{transform:translateX(-3px)}
+
+.modal-title{
+  font-family:'Fredoka One',cursive;
+  font-size:clamp(1.6rem,4vw,2.2rem);
+  color:#fff;line-height:1.1;margin-bottom:6px;
+}
+.modal-sub{font-size:15px;color:rgba(255,255,255,.82);line-height:1.5}
+
+.modal-body{
+  overflow-y:auto;
+  padding:24px 28px 28px;
+  flex:1;
+  scrollbar-width:thin;
+  scrollbar-color:rgba(255,255,255,.25) transparent;
+}
+.modal-body::-webkit-scrollbar{width:5px}
+.modal-body::-webkit-scrollbar-thumb{background:rgba(255,255,255,.25);border-radius:4px}
+
+.modal-cols{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:14px;margin-bottom:18px}
+.modal-box{
+  background:rgba(255,255,255,.13);
+  border-radius:14px;padding:16px 18px;
+  border:1px solid rgba(255,255,255,.15);
+  animation:boxIn .4s ease both;
+}
+.modal-box:nth-child(1){animation-delay:.05s}
+.modal-box:nth-child(2){animation-delay:.12s}
+.modal-box:nth-child(3){animation-delay:.19s}
+@keyframes boxIn{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:translateY(0)}}
+.modal-box h4{font-size:13px;font-weight:800;color:#fff;margin-bottom:10px;display:flex;gap:6px;align-items:center}
+.modal-box ul{list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:5px}
+.modal-box ul li{
+  font-size:13px;color:rgba(255,255,255,.88);
+  display:flex;gap:7px;align-items:flex-start;line-height:1.45;
+  padding:5px 8px;border-radius:8px;
+  background:rgba(255,255,255,.06);
+}
+.modal-box ul li span.bullet{flex-shrink:0;font-weight:900;font-size:14px;margin-top:1px}
+
+.modal-stats{display:flex;gap:12px;flex-wrap:wrap}
+.modal-stat{
+  flex:1;min-width:110px;
+  background:rgba(255,255,255,.16);
+  border-radius:14px;padding:14px 16px;text-align:center;
+  border:1px solid rgba(255,255,255,.2);
+  animation:boxIn .4s .25s ease both;
+}
+.modal-stat-num{font-family:'Fredoka One',cursive;font-size:26px;color:#fff;line-height:1}
+.modal-stat-lbl{font-size:11px;color:rgba(255,255,255,.72);font-weight:600;margin-top:4px;line-height:1.3}
+
+.modal-deco{
+  position:absolute;pointer-events:none;border-radius:50%;
+  background:rgba(255,255,255,.05);
+}
+
+/* ── decorative blobs in header ── */
+.blob1{width:200px;height:200px;top:-80px;right:-60px}
+.blob2{width:120px;height:120px;bottom:-40px;left:-30px}
+
+/* ── INFO CARDS (other sections) ─────────────────── */
+.info-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:16px;margin-bottom:24px}
+.info-card{
+  background:#1e1b4b;border-radius:var(--radius);overflow:hidden;
+  box-shadow:0 4px 20px rgba(0,0,0,.4);transition:transform .25s,box-shadow .25s;
+  border:1.5px solid rgba(255,255,255,.08);
+}
+.info-card:hover{transform:translateY(-5px);box-shadow:0 12px 32px rgba(0,0,0,.5)}
+
+/* ── STAT ROW ─────────────────────────────────────── */
+.stat-row{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:12px;margin-bottom:24px}
+.stat{
+  background:#1e1b4b;border-radius:var(--radius);
+  padding:22px 16px;text-align:center;
+  box-shadow:0 4px 20px rgba(0,0,0,.3);
+  animation:cardIn .5s ease both;
+  border:1.5px solid rgba(255,255,255,.07);
+}
+.stat-num{font-family:'Fredoka One',cursive;font-size:34px;line-height:1}
+.stat-label{font-size:12px;color:#b8b5d8;margin-top:4px;font-weight:600}
+
+/* ── TIMELINE / STEPS ─────────────────────────────── */
+.steps{display:flex;flex-direction:column;gap:0;margin-bottom:24px}
+.step{
+  display:flex;gap:16px;padding:16px 0;
+  border-left:3px solid rgba(255,255,255,.15);
+  margin-left:20px;padding-left:28px;
+  position:relative;animation:cardIn .5s ease both;
+}
+.step::before{
+  content:'';
+  position:absolute;left:-8px;top:22px;
+  width:14px;height:14px;border-radius:50%;
+  background:var(--blue);border:3px solid #0f0c29;
+}
+.step:nth-child(1)::before{background:#2952ff}
+.step:nth-child(2)::before{background:#00d4aa}
+.step:nth-child(3)::before{background:#8b2be2}
+.step:nth-child(4)::before{background:#ff1a6e}
+.step:nth-child(5)::before{background:#ff6a00}
+.step-icon{font-size:24px;flex-shrink:0;margin-top:2px}
+.step h4{font-size:15px;font-weight:800;margin-bottom:4px;color:#fff}
+.step p{font-size:13px;color:#b8b5d8;line-height:1.6}
+
+/* ── ALERT BOX ─────────────────────────────────────── */
+.alert{
+  border-radius:var(--radius);
+  padding:18px 22px;
+  margin-bottom:16px;
+  display:flex;gap:12px;
+  align-items:flex-start;
+  animation:cardIn .4s ease both;
+}
+.alert-icon{font-size:22px;flex-shrink:0;margin-top:1px}
+.alert h4{font-size:14px;font-weight:800;margin-bottom:3px;color:#fff}
+.alert p{font-size:13px;line-height:1.5;color:#ccc}
+.alert.warning{background:rgba(255,215,0,.12);border-left:4px solid #ffd700}
+.alert.danger{background:rgba(255,26,110,.12);border-left:4px solid #ff1a6e}
+.alert.success{background:rgba(0,212,170,.12);border-left:4px solid #00d4aa}
+.alert.info{background:rgba(41,82,255,.15);border-left:4px solid #2952ff}
+
+/* ── ACCORDION ─────────────────────────────────────── */
+.accordion{background:#1e1b4b;border-radius:var(--radius);overflow:hidden;box-shadow:0 4px 16px rgba(0,0,0,.3);margin-bottom:12px;border:1px solid rgba(255,255,255,.07)}
+.acc-header{
+  display:flex;justify-content:space-between;align-items:center;
+  padding:18px 22px;cursor:pointer;
+  font-weight:700;font-size:14px;color:#fff;
+  transition:background .2s;
+}
+.acc-header:hover{background:#2a2560}
+.acc-arrow{font-size:18px;transition:transform .3s;display:inline-block;color:#b8b5d8}
+.acc-body{
+  max-height:0;overflow:hidden;
+  transition:max-height .35s ease,padding .3s;
+  padding:0 22px;font-size:13px;color:#b8b5d8;line-height:1.7;
+}
+.acc-body.open{max-height:400px;padding:0 22px 18px}
+
+/* ── SECTION TITLE ────────────────────────────────── */
+.section-title{
+  font-family:'Fredoka One',cursive;
+  font-size:26px;
+  color:#fff;
+  margin-bottom:6px;
+  text-shadow:0 0 30px rgba(255,0,128,.3);
+}
+.section-sub{font-size:14px;color:#b8b5d8;margin-bottom:22px}
+
+/* ── COMPANION SETUP ──────────────────────────────── */
+.setup-card{
+  background:#1e1b4b;
+  border-radius:var(--radius);
+  padding:32px 24px 28px;
+  box-shadow:0 8px 32px rgba(0,0,0,.4);
+  max-width:520px;margin:0 auto;
+  animation:cardIn .5s ease both;
+  border:1px solid rgba(255,255,255,.1);
+}
+.setup-hero{text-align:center;margin-bottom:24px}
+.setup-preview{
+  font-size:64px;line-height:1;margin-bottom:12px;
+  display:block;
+  animation:bounceIn .6s cubic-bezier(.36,.07,.19,.97) both;
+  filter:drop-shadow(0 4px 12px rgba(74,110,224,.25));
+  transition:transform .3s;
+}
+@keyframes bounceIn{0%{transform:scale(0);opacity:0}60%{transform:scale(1.2)}100%{transform:scale(1);opacity:1}}
+.setup-heading{font-family:'Fredoka One',cursive;font-size:20px;color:#fff;margin-bottom:6px}
+.setup-desc{font-size:13px;color:#b8b5d8}
+
+.emoji-row{
+  display:flex;flex-wrap:wrap;gap:8px;justify-content:center;
+  margin-bottom:20px;
+}
+.emoji-btn{
+  width:44px;height:44px;border-radius:12px;
+  border:2px solid transparent;background:#2a2560;
+  font-size:22px;cursor:pointer;
+  transition:all .18s;display:flex;align-items:center;justify-content:center;
+}
+.emoji-btn:hover{transform:scale(1.15);background:#352d80}
+.emoji-btn.active{
+  border-color:#ff0080;background:#3a1a5e;
+  transform:scale(1.12);
+  box-shadow:0 0 0 3px rgba(255,0,128,.3);
+}
+
+.name-input-wrap{position:relative;margin-bottom:12px}
+.name-input{
+  width:100%;padding:12px 48px 12px 16px;
+  border-radius:12px;border:2px solid rgba(255,255,255,.15);
+  font-size:16px;font-family:'Nunito',sans-serif;
+  font-weight:700;color:#fff;
+  background:#2a2560;
+  transition:border-color .2s,box-shadow .2s;
+}
+.name-input:focus{outline:none;border-color:#ff0080;box-shadow:0 0 0 3px rgba(255,0,128,.2)}
+.name-counter{
+  position:absolute;right:12px;top:50%;transform:translateY(-50%);
+  font-size:11px;color:#b8b5d8;font-weight:600;
+}
+
+.name-suggestions{
+  display:flex;flex-wrap:wrap;gap:8px;margin-bottom:20px;
+}
+.name-sug{
+  font-size:13px;font-weight:700;
+  padding:5px 14px;border-radius:20px;
+  background:#2a2560;color:#b8b5d8;
+  border:1.5px solid rgba(255,255,255,.15);
+  cursor:pointer;transition:all .18s;
+}
+.name-sug:hover{background:#ff0080;color:#fff;border-color:#ff0080}
+
+.start-btn{
+  width:100%;padding:14px;border-radius:12px;border:none;
+  background:linear-gradient(135deg,#ff0080,#7928ca);
+  color:#fff;font-size:15px;font-weight:800;
+  font-family:'Nunito',sans-serif;cursor:pointer;
+  transition:transform .2s,box-shadow .2s,opacity .2s;
+  box-shadow:0 4px 20px rgba(255,0,128,.4);
+}
+.start-btn:hover{transform:translateY(-2px);box-shadow:0 8px 32px rgba(255,0,128,.5)}
+.start-btn:disabled{opacity:.45;cursor:not-allowed;transform:none}
+
+/* rename button inside chat header */
+.rename-btn{
+  margin-left:auto;background:rgba(255,255,255,.2);border:1.5px solid rgba(255,255,255,.35);
+  color:#fff;width:34px;height:34px;border-radius:50%;
+  font-size:15px;cursor:pointer;flex-shrink:0;
+  transition:background .2s,transform .2s;
+  display:flex;align-items:center;justify-content:center;
+}
+.rename-btn:hover{background:rgba(255,255,255,.35);transform:scale(1.1)}
+
+/* ── CHAT ──────────────────────────────────────────── */
+.chat-wrap{
+  background:#1e1b4b;
+  border-radius:var(--radius);
+  overflow:hidden;
+  box-shadow:0 8px 32px rgba(0,0,0,.4);
+  border:1px solid rgba(255,255,255,.08);
+}
+.chat-head{
+  background:linear-gradient(135deg,#ff0080,#7928ca);
+  padding:14px 20px;
+  display:flex;align-items:center;gap:12px;
+}
+.avatar{
+  width:40px;height:40px;border-radius:50%;
+  background:rgba(255,255,255,.2);
+  display:flex;align-items:center;justify-content:center;
+  font-size:20px;
+}
+.chat-head-info{flex:1}
+.chat-head-info strong{color:#fff;font-size:15px;display:block}
+.online{display:flex;align-items:center;gap:5px;font-size:12px;color:rgba(255,255,255,.8)}
+.online-dot{width:7px;height:7px;border-radius:50%;background:#00d4aa;animation:pulse 2s infinite}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.4}}
+
+.messages{height:320px;overflow-y:auto;padding:16px;display:flex;flex-direction:column;gap:10px;background:#13113a}
+.messages::-webkit-scrollbar{width:4px}
+.messages::-webkit-scrollbar-thumb{background:#3a3570;border-radius:4px}
+
+.msg{
+  max-width:78%;padding:10px 14px;
+  border-radius:16px;font-size:14px;line-height:1.55;
+  animation:msgIn .3s ease both;
+}
+@keyframes msgIn{from{opacity:0;transform:translateY(8px) scale(.97)}to{opacity:1;transform:translateY(0) scale(1)}}
+.msg.user{
+  align-self:flex-end;
+  background:linear-gradient(135deg,#ff0080,#7928ca);
+  color:#fff;border-bottom-right-radius:4px;
+}
+.msg.bot{
+  align-self:flex-start;
+  background:#2a2560;color:#e8e6ff;
+  border:1px solid rgba(255,255,255,.1);
+  border-bottom-left-radius:4px;
+  box-shadow:0 1px 6px rgba(0,0,0,.2);
+}
+.typing-dots{display:flex;gap:4px;padding:4px 2px}
+.typing-dots span{width:8px;height:8px;border-radius:50%;background:#7b6fff;animation:dot 1.2s infinite}
+.typing-dots span:nth-child(2){animation-delay:.2s}
+.typing-dots span:nth-child(3){animation-delay:.4s}
+@keyframes dot{0%,60%,100%{transform:translateY(0)}30%{transform:translateY(-6px)}}
+
+.chips-row{
+  display:flex;flex-wrap:wrap;gap:6px;
+  padding:12px 16px;
+  border-top:1px solid rgba(255,255,255,.07);
+  background:#1e1b4b;
+}
+.chip{
+  font-size:12px;font-weight:700;
+  padding:6px 14px;border-radius:20px;
+  border:1.5px solid rgba(255,255,255,.15);
+  background:#2a2560;color:#b8b5d8;
+  cursor:pointer;transition:all .2s;
+  font-family:'Nunito',sans-serif;
+}
+.chip:hover{background:#ff0080;color:#fff;border-color:#ff0080;transform:scale(1.04)}
+
+.input-row{display:flex;gap:8px;padding:12px 16px;background:#1e1b4b;border-top:1px solid rgba(255,255,255,.07)}
+.msg-input{
+  flex:1;padding:10px 16px;
+  border-radius:50px;border:1.5px solid rgba(255,255,255,.15);
+  font-size:14px;font-family:'Nunito',sans-serif;
+  background:#2a2560;color:#fff;
+  transition:border-color .2s;
+}
+.msg-input::placeholder{color:#6b6a99}
+.msg-input:focus{outline:none;border-color:#ff0080}
+.send-btn{
+  width:42px;height:42px;border-radius:50%;
+  background:linear-gradient(135deg,#ff0080,#7928ca);
+  border:none;cursor:pointer;
+  display:flex;align-items:center;justify-content:center;
+  font-size:18px;transition:transform .2s,box-shadow .2s;
+  flex-shrink:0;
+}
+.send-btn:hover{transform:scale(1.08);box-shadow:0 4px 16px rgba(255,0,128,.5)}
+.send-btn:disabled{opacity:.5;cursor:not-allowed;transform:none}
+
+/* ── REPORT SECTION ───────────────────────────────── */
+.report-section-title{
+  font-size:17px;font-weight:800;
+  color:#fff;margin-bottom:6px;
+}
+.report-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fill,minmax(280px,1fr));
+  gap:14px;margin-bottom:8px;
+}
+.report-card{
+  background:#1e1b4b;
+  border-radius:var(--radius);
+  border-left:4px solid var(--rc, #2952ff);
+  box-shadow:0 4px 20px rgba(0,0,0,.4);
+  padding:18px 18px 14px;
+  display:flex;flex-direction:column;gap:10px;
+  transition:transform .22s,box-shadow .22s;
+  animation:cardIn .5s ease both;
+  border-top:1px solid rgba(255,255,255,.06);
+}
+.report-card:hover{transform:translateY(-4px);box-shadow:0 12px 32px rgba(0,0,0,.5)}
+.report-logo{font-size:28px;line-height:1}
+.report-info{display:flex;flex-direction:column;gap:4px;flex:1}
+.report-info strong{font-size:15px;font-weight:800;color:#fff}
+.report-info span{font-size:12px;color:#b8b5d8;line-height:1.4}
+.report-steps{
+  margin-top:8px;display:flex;flex-direction:column;gap:4px;
+}
+.report-step{
+  font-size:12px;color:#e8e6ff;
+  background:#2a2560;
+  border-radius:8px;padding:5px 10px;
+  line-height:1.4;
+  border-left:3px solid var(--rc, #2952ff);
+}
+.report-btn{
+  display:block;text-align:center;
+  background:var(--rc, #2952ff);
+  color:#fff !important;font-size:13px;font-weight:800;
+  padding:9px 14px;border-radius:10px;
+  text-decoration:none;
+  transition:opacity .2s,transform .2s;
+  font-family:'Nunito',sans-serif;
+  border:2px solid transparent;
+}
+.report-btn:hover{opacity:.88;transform:scale(1.02)}
+
+.extra-links-grid{
+  display:flex;flex-direction:column;gap:10px;
+}
+.extra-link{
+  display:flex;align-items:center;gap:14px;
+  background:#1e1b4b;
+  border-radius:var(--radius);
+  padding:14px 16px;
+  text-decoration:none;
+  box-shadow:0 4px 16px rgba(0,0,0,.3);
+  border:1px solid rgba(255,255,255,.08);
+  transition:transform .2s,box-shadow .2s,border-color .2s;
+}
+.extra-link:hover{transform:translateX(4px);box-shadow:0 6px 24px rgba(0,0,0,.4);border-color:#ff0080}
+.extra-link-icon{font-size:24px;flex-shrink:0}
+.extra-link div{flex:1;display:flex;flex-direction:column;gap:2px}
+.extra-link strong{font-size:14px;font-weight:800;color:#fff}
+.extra-link span{font-size:12px;color:#b8b5d8;line-height:1.4}
+.extra-link-arrow{font-size:18px;color:#ff0080;flex-shrink:0;font-weight:700}
+
+.report-card--featured{
+  grid-column: span 1;
+  border-left-width:5px;
+  background:linear-gradient(160deg, #1e1b4b 80%, #251a4b);
+}
+.report-tag{
+  display:inline-block;font-size:11px;font-weight:800;
+  padding:3px 10px;border-radius:20px;margin-top:2px;
+  align-self:flex-start;
+}
+.report-desc{font-size:12px;color:#b8b5d8;line-height:1.5;margin-top:4px}
+.report-subtypes{display:flex;flex-direction:column;gap:8px;margin-top:10px}
+.report-subtype{
+  background:#2a2560;border-radius:10px;
+  padding:10px 12px;
+  border-left:3px solid var(--rc,#2952ff);
+}
+.rst-title{font-size:12px;font-weight:800;color:#fff;margin-bottom:6px}
+.rst-steps{
+  margin:0;padding-left:16px;
+  display:flex;flex-direction:column;gap:3px;
+}
+.rst-steps li{font-size:11px;color:#b8b5d8;line-height:1.5}
+.rst-steps strong{color:#fff}
+.report-btns{display:flex;flex-direction:column;gap:7px;margin-top:4px}
+.report-btn--sec{
+  background:transparent !important;
+  border:2px solid var(--rc,#2952ff);
+  color:var(--rc,#2952ff) !important;
+}
+.report-btn--sec:hover{opacity:.85}
+
+/* ── SURVEY ───────────────────────────────────────── */
+.survey-wrap{
+  margin-top:28px;
+  background:#1e1b4b;
+  border-radius:var(--radius);
+  overflow:hidden;
+  box-shadow:0 8px 32px rgba(0,0,0,.4);
+  border:1px solid rgba(255,255,255,.08);
+}
+.survey-header{
+  background:linear-gradient(135deg,#ff0080,#7928ca,#2952ff);
+  padding:22px 24px;
+  display:flex;align-items:center;gap:14px;
+}
+.survey-icon{font-size:32px}
+.survey-title{font-family:'Fredoka One',cursive;font-size:22px;color:#fff;margin-bottom:3px}
+.survey-sub{font-size:13px;color:rgba(255,255,255,.85)}
+
+#surveyForm{padding:22px 24px 26px}
+.sq-block{margin-bottom:22px}
+.sq-label{font-size:14px;font-weight:800;color:#fff;margin-bottom:10px;line-height:1.4}
+.sq-options{display:flex;flex-direction:column;gap:7px}
+.sq-options--emoji{flex-direction:row;flex-wrap:wrap;gap:8px}
+.sq-opt{
+  display:flex;align-items:center;gap:8px;
+  font-size:13px;color:#e8e6ff;
+  padding:10px 16px;border-radius:10px;
+  background:#2a2560;border:1.5px solid rgba(255,255,255,.12);
+  cursor:pointer;transition:all .18s;
+  user-select:none;
+}
+.sq-opt:hover{background:#352d80;border-color:#ff0080}
+.sq-opt input{accent-color:#ff0080;flex-shrink:0}
+.sq-opt--emoji{
+  flex-direction:column;align-items:center;
+  padding:10px 14px;gap:4px;text-align:center;
+  min-width:72px;
+}
+.sq-opt--emoji span{font-size:26px}
+.sq-opt--emoji input{display:none}
+.sq-opt--emoji.checked{background:#3a1a5e;border-color:#ff0080;transform:scale(1.08)}
+
+.sq-textarea{
+  width:100%;min-height:80px;
+  padding:10px 14px;border-radius:10px;
+  border:1.5px solid rgba(255,255,255,.15);
+  font-size:13px;font-family:'Nunito',sans-serif;
+  color:#e8e6ff;background:#2a2560;
+  resize:vertical;transition:border-color .2s;
+  margin-top:4px;
+}
+.sq-textarea:focus{outline:none;border-color:#ff0080}
+.sq-charcount{font-size:11px;color:#6b6a99;text-align:right;margin-top:3px}
+
+.sq-submit{
+  width:100%;padding:14px;
+  background:linear-gradient(135deg,#ff0080,#7928ca);
+  color:#fff;font-size:14px;font-weight:800;
+  border:none;border-radius:12px;cursor:pointer;
+  font-family:'Nunito',sans-serif;
+  transition:transform .2s,box-shadow .2s;
+  box-shadow:0 4px 20px rgba(255,0,128,.4);
+  margin-top:4px;
+}
+.sq-submit:hover{transform:translateY(-2px);box-shadow:0 8px 32px rgba(255,0,128,.5)}
+
+.survey-result{
+  padding:28px 24px;text-align:center;
+  animation:cardIn .4s ease both;
+}
+.survey-result-icon{font-size:54px;margin-bottom:12px}
+.survey-result h3{font-family:'Fredoka One',cursive;font-size:22px;color:#fff;margin-bottom:8px}
+.survey-result p{font-size:14px;color:#b8b5d8;line-height:1.7;max-width:400px;margin:0 auto 16px}
+.survey-result-msg{
+  background:#2a2560;border-radius:12px;
+  padding:14px 18px;font-size:13px;
+  color:#e8e6ff;line-height:1.6;
+  border-left:4px solid #ff0080;
+  text-align:left;margin-top:8px;
+}
+.survey-reset{
+  margin-top:14px;background:none;border:1.5px solid rgba(255,255,255,.2);
+  color:#b8b5d8;font-size:13px;padding:8px 20px;
+  border-radius:8px;cursor:pointer;font-family:'Nunito',sans-serif;
+  transition:all .2s;
+}
+.survey-reset:hover{border-color:#ff0080;color:#ff0080}
+
+/* ── RESULTS PANEL ────────────────────────────────── */
+.results-loading{text-align:center;color:#b8b5d8;padding:40px;font-size:14px}
+.results-empty{
+  text-align:center;padding:48px 24px;
+  background:#1e1b4b;border-radius:var(--radius);
+  box-shadow:0 4px 20px rgba(0,0,0,.3);
+  border:1px solid rgba(255,255,255,.06);
+}
+.results-empty .re-icon{font-size:48px;margin-bottom:12px}
+.results-empty p{font-size:14px;color:#b8b5d8}
+.results-summary{
+  display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));
+  gap:12px;margin-bottom:20px;
+}
+.rs-stat{
+  background:#1e1b4b;border-radius:var(--radius);
+  padding:16px 12px;text-align:center;
+  box-shadow:0 4px 16px rgba(0,0,0,.3);
+  border:1px solid rgba(255,255,255,.07);
+}
+.rs-num{font-family:'Fredoka One',cursive;font-size:30px;line-height:1}
+.rs-lbl{font-size:11px;color:#b8b5d8;font-weight:700;margin-top:3px}
+.results-cards{display:flex;flex-direction:column;gap:12px}
+.res-entry{
+  background:#1e1b4b;border-radius:var(--radius);
+  border-left:4px solid #2952ff;
+  padding:16px 18px;
+  box-shadow:0 4px 16px rgba(0,0,0,.3);
+  animation:cardIn .4s ease both;
+  border-top:1px solid rgba(255,255,255,.06);
+}
+.res-entry-top{display:flex;justify-content:space-between;align-items:center;margin-bottom:10px;flex-wrap:wrap;gap:6px}
+.res-entry-id{font-size:11px;color:#b8b5d8;font-weight:700}
+.res-entry-date{font-size:11px;color:#b8b5d8}
+.res-pills{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:8px}
+.res-pill{
+  font-size:11px;font-weight:700;
+  padding:3px 10px;border-radius:20px;
+  background:#2a2560;color:#b8b5d8;
+}
+.res-pill.danger{background:rgba(255,26,110,.2);color:#ff1a6e}
+.res-pill.success{background:rgba(0,212,170,.15);color:#00d4aa}
+.res-pill.warning{background:rgba(255,215,0,.15);color:#ffd700}
+.res-pill.neutral{background:#252060;color:#9490d4}
+.res-msg{
+  font-size:12px;color:#b8b5d8;
+  background:#2a2560;border-radius:8px;
+  padding:8px 12px;line-height:1.5;
+  font-style:italic;margin-top:6px;
+}
+.results-actions{
+  display:flex;gap:10px;margin-bottom:16px;flex-wrap:wrap;align-items:center;
+}
+.res-count-badge{
+  font-size:13px;font-weight:800;color:#b8b5d8;
+  background:#2a2560;padding:5px 14px;border-radius:20px;
+}
+.res-clear-btn{
+  margin-left:auto;font-size:12px;font-weight:700;
+  color:#ff1a6e;background:none;border:1.5px solid rgba(255,26,110,.3);
+  padding:5px 14px;border-radius:20px;cursor:pointer;
+  font-family:'Nunito',sans-serif;transition:all .2s;
+}
+.res-clear-btn:hover{background:rgba(255,26,110,.15)}
+
+/* ── RESOURCES ─────────────────────────────────────── */
+.resource-cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:12px;margin-bottom:20px}
+.res-card{
+  background:#1e1b4b;border-radius:var(--radius);
+  padding:18px;box-shadow:0 4px 16px rgba(0,0,0,.3);
+  display:flex;flex-direction:column;gap:6px;
+  animation:cardIn .5s ease both;
+  transition:transform .2s;
+  border:1px solid rgba(255,255,255,.07);
+}
+.res-card:hover{transform:translateY(-4px)}
+.res-flag{font-size:24px}
+.res-card strong{font-size:14px;font-weight:800;color:#fff}
+.res-card span{font-size:13px;color:#b8b5d8}
+.res-phone{
+  font-family:'Fredoka One',cursive;
+  font-size:20px;color:#00d4aa;margin-top:2px;
+}
+
+/* ── FOOTER ────────────────────────────────────────── */
+footer{
+  text-align:center;padding:28px;
+  font-size:13px;color:#6b6a99;
+  border-top:1px solid rgba(255,255,255,.07);
+  background:#0a0820;
+}
+</style>
+</head>
+<body>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="bubbles" id="bubbles"></div>
+  <div class="hero-content">
+    <div class="hero-badge">🛡️ Proyecto Educativo</div>
+    <h1>Prevenir el <span>Bullying</span></h1>
+    <p>Información real, apoyo cercano y herramientas para actuar. Porque nadie merece vivir con miedo.</p>
+    <div class="hero-btns">
+      <button class="btn-hero primary" onclick="goToChat()">💬 Pedir apoyo</button>
+      <button class="btn-hero outline" onclick="goToInfo()">📚 Quiero informarme</button>
+    </div>
+  </div>
+  <svg class="hero-wave" viewBox="0 0 1440 60" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M0,40 C360,80 1080,0 1440,40 L1440,60 L0,60 Z" fill="#0f0c29"/>
+  </svg>
+</div>
+
+<!-- TABS -->
+<div class="nav-tabs">
+  <button class="tab active" onclick="showTab('tipos')">🧩 Tipos</button>
+  <button class="tab" onclick="showTab('senales')">⚠️ Señales</button>
+  <button class="tab" onclick="showTab('como-actuar')">🤝 Cómo actuar</button>
+  <button class="tab" onclick="showTab('cyber')">📱 Ciberbullying</button>
+  <button class="tab" onclick="showTab('denunciar')">🚨 Denunciar</button>
+  <button class="tab" onclick="showTab('encuesta')">📋 Encuesta</button>
+  <button class="tab" onclick="showTab('resultados')">📊 Resultados</button>
+  <button class="tab" onclick="showTab('chat')">💬 Apoyo</button>
+  <button class="tab" onclick="showTab('juego1')" style="background:linear-gradient(135deg,#ff6a00,#ee0979);color:#fff;">🎮 Juego: ¿Qué harías?</button>
+  <button class="tab" onclick="showTab('juego2')" style="background:linear-gradient(135deg,#00d4aa,#2952ff);color:#fff;">🕹️ Juego: Palabras que sanan</button>
+</div>
+
+<!-- SECTION: TIPOS -->
+<div class="section active" id="tipos">
+  <h2 class="section-title">¿Qué tipos de bullying existen?</h2>
+  <p class="section-sub">Toca cada tarjeta para conocer más sobre ese tipo de bullying.</p>
+
+  <!-- CARD GRID -->
+  <div class="type-grid">
+
+    <div class="type-card" id="card-fisico" onclick="toggleDetail('fisico')" style="border-color:#4a6ee0">
+      <div class="card-top" style="background:linear-gradient(90deg,#4a6ee0,#7b5ea7)"></div>
+      <div class="card-body">
+        <div class="card-icon-wrap" style="background:rgba(41,82,255,.2)">🤜</div>
+        <h3 style="color:#4a6ee0">Físico</h3>
+        <p>Golpes, empujones o daño a pertenencias. El más visible pero no el único.</p>
+        <div class="tag-list">
+          <span class="tag" style="background:rgba(41,82,255,.2);color:#4a6ee0">Golpes</span>
+          <span class="tag" style="background:rgba(41,82,255,.2);color:#4a6ee0">Empujones</span>
+          <span class="tag" style="background:rgba(41,82,255,.2);color:#4a6ee0">Robo</span>
+        </div>
+        <div class="card-hint" style="color:#4a6ee0">👆 Toca para saber más</div>
+      </div>
+    </div>
+
+    <div class="type-card" id="card-verbal" onclick="toggleDetail('verbal')" style="border-color:#e05a8a">
+      <div class="card-top" style="background:linear-gradient(90deg,#e05a8a,#f4845f)"></div>
+      <div class="card-body">
+        <div class="card-icon-wrap" style="background:rgba(255,26,110,.15)">💬</div>
+        <h3 style="color:#e05a8a">Verbal</h3>
+        <p>Insultos, burlas, apodos ofensivos o amenazas con palabras.</p>
+        <div class="tag-list">
+          <span class="tag" style="background:rgba(255,26,110,.15);color:#e05a8a">Insultos</span>
+          <span class="tag" style="background:rgba(255,26,110,.15);color:#e05a8a">Apodos</span>
+          <span class="tag" style="background:rgba(255,26,110,.15);color:#e05a8a">Amenazas</span>
+        </div>
+        <div class="card-hint" style="color:#e05a8a">👆 Toca para saber más</div>
+      </div>
+    </div>
+
+    <div class="type-card" id="card-social" onclick="toggleDetail('social')" style="border-color:#2dbfa0">
+      <div class="card-top" style="background:linear-gradient(90deg,#2dbfa0,#4a6ee0)"></div>
+      <div class="card-body">
+        <div class="card-icon-wrap" style="background:rgba(0,212,170,.15)">👥</div>
+        <h3 style="color:#2dbfa0">Social</h3>
+        <p>Excluir, difundir rumores o aislar a alguien del grupo.</p>
+        <div class="tag-list">
+          <span class="tag" style="background:rgba(0,212,170,.15);color:#2dbfa0">Exclusión</span>
+          <span class="tag" style="background:rgba(0,212,170,.15);color:#2dbfa0">Rumores</span>
+          <span class="tag" style="background:rgba(0,212,170,.15);color:#2dbfa0">Aislamiento</span>
+        </div>
+        <div class="card-hint" style="color:#2dbfa0">👆 Toca para saber más</div>
+      </div>
+    </div>
+
+    <div class="type-card" id="card-cyber" onclick="toggleDetail('cyber2')" style="border-color:#f4845f">
+      <div class="card-top" style="background:linear-gradient(90deg,#f7c948,#f4845f)"></div>
+      <div class="card-body">
+        <div class="card-icon-wrap" style="background:rgba(255,107,0,.15)">📱</div>
+        <h3 style="color:#d4740a">Ciberbullying</h3>
+        <p>Acoso por redes sociales, mensajes o fotos humillantes online.</p>
+        <div class="tag-list">
+          <span class="tag" style="background:rgba(255,107,0,.15);color:#d4a017">Redes sociales</span>
+          <span class="tag" style="background:rgba(255,107,0,.15);color:#d4a017">Fotos</span>
+          <span class="tag" style="background:rgba(255,107,0,.15);color:#d4a017">Mensajes</span>
+        </div>
+        <div class="card-hint" style="color:#d4740a">👆 Toca para saber más</div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- DETAIL PANELS (below the grid) -->
+
+  <div class="detail-panel" id="detail-fisico">
+    <div class="detail-inner" style="background:linear-gradient(135deg,#4a6ee0,#7b5ea7)">
+      <button class="detail-close" onclick="closeDetail('fisico')">✕</button>
+      <div class="detail-title">🤜 Bullying Físico</div>
+      <div class="detail-sub">La forma más visible — pero no la más frecuente ni la menos dañina.</div>
+      <div class="detail-cols">
+        <div class="detail-box">
+          <h4>⚠️ ¿Cómo se manifiesta?</h4>
+          <ul>
+            <li>Golpes, patadas o pellizcos</li>
+            <li>Empujones en pasillos o recreos</li>
+            <li>Robo o destrucción de pertenencias</li>
+            <li>Encerrar o impedir el paso</li>
+            <li>Obligar a hacer cosas con amenaza física</li>
+          </ul>
+        </div>
+        <div class="detail-box">
+          <h4>💔 Consecuencias en la víctima</h4>
+          <ul>
+            <li>Miedo constante a ir a la escuela</li>
+            <li>Lesiones físicas visibles</li>
+            <li>Ansiedad y estrés crónico</li>
+            <li>Pérdida de confianza en sí mismo</li>
+            <li>Pesadillas y problemas de sueño</li>
+          </ul>
+        </div>
+        <div class="detail-box">
+          <h4>✅ ¿Qué hacer?</h4>
+          <ul>
+            <li>Alejarse del agresor sin responder violencia</li>
+            <li>Contarlo a un adulto o profesor HOY</li>
+            <li>Guardar evidencia si hay objetos dañados</li>
+            <li>Si hay lesiones, acudir al médico</li>
+            <li>Denunciar ante dirección escolar</li>
+          </ul>
+        </div>
+      </div>
+      <div class="detail-stat-row">
+        <div class="detail-stat"><div class="detail-stat-num">30%</div><div class="detail-stat-lbl">de casos implica agresión física</div></div>
+        <div class="detail-stat"><div class="detail-stat-num">Más</div><div class="detail-stat-lbl">frecuente en primaria que secundaria</div></div>
+        <div class="detail-stat"><div class="detail-stat-num">3×</div><div class="detail-stat-lbl">más reportado que otros tipos</div></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="detail-panel" id="detail-verbal">
+    <div class="detail-inner" style="background:linear-gradient(135deg,#e05a8a,#f4845f)">
+      <button class="detail-close" onclick="closeDetail('verbal')">✕</button>
+      <div class="detail-title">💬 Bullying Verbal</div>
+      <div class="detail-sub">Las palabras hieren profundamente — y las heridas no siempre se ven.</div>
+      <div class="detail-cols">
+        <div class="detail-box">
+          <h4>⚠️ ¿Cómo se manifiesta?</h4>
+          <ul>
+            <li>Insultos directos y apodos crueles</li>
+            <li>Burlas sobre apariencia, voz o familia</li>
+            <li>Amenazas verbales repetidas</li>
+            <li>Humillaciones frente al grupo</li>
+            <li>Gritos o comentarios despectivos</li>
+          </ul>
+        </div>
+        <div class="detail-box">
+          <h4>💔 Consecuencias en la víctima</h4>
+          <ul>
+            <li>Baja autoestima severa</li>
+            <li>Depresión y tristeza persistente</li>
+            <li>Miedo a hablar en público</li>
+            <li>Rechazo a socializar</li>
+            <li>Interiorización de los insultos como verdad</li>
+          </ul>
+        </div>
+        <div class="detail-box">
+          <h4>✅ ¿Qué hacer?</h4>
+          <ul>
+            <li>No reaccionar — el agresor busca esa respuesta</li>
+            <li>Alejarse con calma si es posible</li>
+            <li>Contarlo a un adulto o tutor</li>
+            <li>Recordar: las palabras del agresor son mentira</li>
+            <li>Buscar apoyo emocional (psicólogo, familia)</li>
+          </ul>
+        </div>
+      </div>
+      <div class="detail-stat-row">
+        <div class="detail-stat"><div class="detail-stat-num">77%</div><div class="detail-stat-lbl">de víctimas sufre bullying verbal</div></div>
+        <div class="detail-stat"><div class="detail-stat-num">Más</div><div class="detail-stat-lbl">común en niñas que en niños</div></div>
+        <div class="detail-stat"><div class="detail-stat-num">#1</div><div class="detail-stat-lbl">tipo más frecuente de bullying</div></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="detail-panel" id="detail-social">
+    <div class="detail-inner" style="background:linear-gradient(135deg,#2dbfa0,#4a6ee0)">
+      <button class="detail-close" onclick="closeDetail('social')">✕</button>
+      <div class="detail-title">👥 Bullying Social</div>
+      <div class="detail-sub">El más invisible — y uno de los más dolorosos para quien lo sufre.</div>
+      <div class="detail-cols">
+        <div class="detail-box">
+          <h4>⚠️ ¿Cómo se manifiesta?</h4>
+          <ul>
+            <li>Excluir a alguien de juegos y grupos</li>
+            <li>Difundir rumores o mentiras</li>
+            <li>Hacer que otros lo rechacen</li>
+            <li>Ignorar o "hacerse el sordo"</li>
+            <li>Cambiar de sitio para que quede solo</li>
+          </ul>
+        </div>
+        <div class="detail-box">
+          <h4>💔 Consecuencias en la víctima</h4>
+          <ul>
+            <li>Soledad y sensación de no pertenecer</li>
+            <li>Vergüenza y confusión profunda</li>
+            <li>Pérdida de habilidades sociales</li>
+            <li>Desconfianza hacia las amistades</li>
+            <li>Ansiedad social a largo plazo</li>
+          </ul>
+        </div>
+        <div class="detail-box">
+          <h4>✅ ¿Qué hacer?</h4>
+          <ul>
+            <li>Buscar otros amigos o grupos de interés</li>
+            <li>Contarlo al orientador escolar</li>
+            <li>No aislarse completamente</li>
+            <li>Hablar con los padres sobre lo que pasa</li>
+            <li>Recordar que el problema es del agresor, no tuyo</li>
+          </ul>
+        </div>
+      </div>
+      <div class="detail-stat-row">
+        <div class="detail-stat"><div class="detail-stat-num">55%</div><div class="detail-stat-lbl">de adolescentes lo ha vivido</div></div>
+        <div class="detail-stat"><div class="detail-stat-num">Difícil</div><div class="detail-stat-lbl">de detectar por adultos</div></div>
+        <div class="detail-stat"><div class="detail-stat-num">+Alto</div><div class="detail-stat-lbl">en chicas de 12-15 años</div></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="detail-panel" id="detail-cyber2">
+    <div class="detail-inner" style="background:linear-gradient(135deg,#f7a948,#f4845f)">
+      <button class="detail-close" onclick="closeDetail('cyber2')">✕</button>
+      <div class="detail-title">📱 Ciberbullying</div>
+      <div class="detail-sub">No se apaga cuando llegas a casa — puede seguirte las 24 horas del día.</div>
+      <div class="detail-cols">
+        <div class="detail-box">
+          <h4>⚠️ ¿Cómo se manifiesta?</h4>
+          <ul>
+            <li>Mensajes hirientes por WhatsApp o DMs</li>
+            <li>Fotos o videos humillantes publicados</li>
+            <li>Exclusión de grupos online</li>
+            <li>Suplantación de identidad</li>
+            <li>Difusión de rumores en redes sociales</li>
+          </ul>
+        </div>
+        <div class="detail-box">
+          <h4>💔 Consecuencias en la víctima</h4>
+          <ul>
+            <li>No hay "escape" — ocurre en casa también</li>
+            <li>Humillación pública ante cientos de personas</li>
+            <li>Ansiedad extrema ante notificaciones</li>
+            <li>Abandono de redes sociales por miedo</li>
+            <li>Daño a la reputación permanente online</li>
+          </ul>
+        </div>
+        <div class="detail-box">
+          <h4>✅ ¿Qué hacer?</h4>
+          <ul>
+            <li>No responder — guardar capturas primero</li>
+            <li>Bloquear al agresor en todas las plataformas</li>
+            <li>Reportar el contenido a la red social</li>
+            <li>Contárselo a un adulto de confianza</li>
+            <li>Si hay fotos íntimas → es un delito, denuncia</li>
+          </ul>
+        </div>
+      </div>
+      <div class="detail-stat-row">
+        <div class="detail-stat"><div class="detail-stat-num">40%</div><div class="detail-stat-lbl">del bullying actual es online</div></div>
+        <div class="detail-stat"><div class="detail-stat-num">70%</div><div class="detail-stat-lbl">no lo cuenta a sus padres</div></div>
+        <div class="detail-stat"><div class="detail-stat-num">13-15</div><div class="detail-stat-lbl">años: mayor riesgo</div></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="alert info">
+    <div class="alert-icon">💡</div>
+    <div><h4>¿Sabías esto?</h4><p>El bullying no es una "broma" ni algo que "endurece". Es un problema serio con consecuencias reales en la salud mental y emocional de quienes lo sufren.</p></div>
+  </div>
+</div>
+
+<!-- SECTION: SEÑALES -->
+<div class="section" id="senales">
+  <h2 class="section-title">¿Cómo reconocer el bullying?</h2>
+  <p class="section-sub">Estas señales pueden indicar que alguien está siendo víctima. Toca cada señal para saber más.</p>
+
+  <div class="alert warning">
+    <div class="alert-icon">⚠️</div>
+    <div><h4>¿Por qué es difícil detectarlo?</h4><p>Más del 60% de las víctimas no piden ayuda por miedo, vergüenza o porque creen que no les van a creer. Reconocer los signos marca la diferencia.</p></div>
+  </div>
+
+  <div class="steps">
+    <div class="step">
+      <div class="step-icon">😔</div>
+      <div>
+        <h4>Cambios de humor repentinos</h4>
+        <p>Tristeza, llanto sin motivo aparente, irritabilidad o retraimiento después de la escuela o de usar el móvil.</p>
+      </div>
+    </div>
+    <div class="step">
+      <div class="step-icon">🏫</div>
+      <div>
+        <h4>Rechazo a ir a la escuela</h4>
+        <p>Inventar dolores o enfermedades, pedir cambios de ruta, llegar muy tarde o no querer salir al recreo.</p>
+      </div>
+    </div>
+    <div class="step">
+      <div class="step-icon">📉</div>
+      <div>
+        <h4>Bajada del rendimiento escolar</h4>
+        <p>Dificultad para concentrarse, notas peores, olvidar tareas. El miedo constante consume energía cognitiva.</p>
+      </div>
+    </div>
+    <div class="step">
+      <div class="step-icon">🍽️</div>
+      <div>
+        <h4>Cambios en alimentación o sueño</h4>
+        <p>No querer comer, pesadillas frecuentes, insomnio o dormir demasiado. El estrés del bullying afecta el cuerpo entero.</p>
+      </div>
+    </div>
+    <div class="step">
+      <div class="step-icon">📵</div>
+      <div>
+        <h4>Evitar el móvil o redes sociales</h4>
+        <p>Dejar de usarlos de repente o ponerse nervioso al recibir notificaciones puede indicar ciberbullying.</p>
+      </div>
+    </div>
+    <div class="step">
+      <div class="step-icon">🧍</div>
+      <div>
+        <h4>Aislamiento social progresivo</h4>
+        <p>Dejar de quedar con amigos, no querer ir a actividades extraescolares, preferir estar siempre solo en casa.</p>
+      </div>
+    </div>
+    <div class="step">
+      <div class="step-icon">👕</div>
+      <div>
+        <h4>Ropa o pertenencias dañadas o perdidas</h4>
+        <p>Llegar a casa con ropa rota, material escolar roto o dinero que "desaparece" sin explicación.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="alert danger">
+    <div class="alert-icon">🚨</div>
+    <div><h4>Señal de alarma urgente</h4><p>Si escuchas frases como "no quiero vivir", "sería mejor que no estuviera" o notas autolesiones, habla con un profesional de inmediato. No lo dejes para después.</p></div>
+  </div>
+
+  <h3 style="font-size:17px;font-weight:800;margin-bottom:12px;margin-top:20px;color:#fff">Conoce mejor el problema</h3>
+
+  <div class="accordion">
+    <div class="acc-header" onclick="toggleAcc(this)">
+      <span>🔍 ¿Cómo es alguien que hace bullying?</span>
+      <span class="acc-arrow">▼</span>
+    </div>
+    <div class="acc-body">
+      <p style="margin-bottom:10px;color:#e8e6ff">La persona que hace bullying generalmente busca <strong>poder, atención y control</strong> sobre los demás. Algunos rasgos comunes:</p>
+      <ul style="padding-left:16px;line-height:2">
+        <li>Baja tolerancia a la frustración y dificultad para controlar impulsos</li>
+        <li>Necesita un "público" para actuar — rara vez actúa completamente solo</li>
+        <li>Puede tener problemas en casa: falta de atención, violencia familiar o sobreprotección excesiva</li>
+        <li>A veces también ha sido víctima en el pasado y repite el patrón que vivió</li>
+        <li>Suele carecer de empatía o tiene dificultades para ponerse en el lugar del otro</li>
+      </ul>
+      <p style="margin-top:10px;color:#b8b5d8">⚠️ Comprender sus causas no justifica su comportamiento. Pero sí ayuda a abordarlo de forma efectiva.</p>
+    </div>
+  </div>
+
+  <div class="accordion">
+    <div class="acc-header" onclick="toggleAcc(this)">
+      <span>🤫 ¿Por qué los testigos no intervienen?</span>
+      <span class="acc-arrow">▼</span>
+    </div>
+    <div class="acc-body">
+      <p style="margin-bottom:10px;color:#e8e6ff">Los testigos son parte clave del bullying. Sin audiencia, el agresor pierde poder. Pero actuar no es fácil:</p>
+      <ul style="padding-left:16px;line-height:2">
+        <li><strong>Miedo:</strong> "Si me meto, el próximo soy yo"</li>
+        <li><strong>Presión social:</strong> el grupo normaliza la situación o se ríe</li>
+        <li><strong>Indefensión aprendida:</strong> "Ya lo han intentado y no cambia nada"</li>
+        <li><strong>Difusión de responsabilidad:</strong> "Que actúe otro, yo no soy el único que lo ve"</li>
+      </ul>
+      <p style="margin-top:10px;color:#b8b5d8">💡 <strong>Dato clave:</strong> La intervención de un testigo detiene el bullying en el <strong>57% de los casos</strong> en menos de 10 segundos. Tú tienes más poder del que crees.</p>
+    </div>
+  </div>
+
+  <div class="accordion">
+    <div class="acc-header" onclick="toggleAcc(this)">
+      <span>🧠 ¿Qué efectos tiene a largo plazo?</span>
+      <span class="acc-arrow">▼</span>
+    </div>
+    <div class="acc-body">
+      <p style="margin-bottom:10px;color:#e8e6ff">El bullying no es "cosa de niños" que se supera sola. Sus efectos pueden durar <strong>años o décadas</strong> si no se trata:</p>
+      <ul style="padding-left:16px;line-height:2">
+        <li>Ansiedad crónica y trastornos de estrés postraumático (TEPT)</li>
+        <li>Depresión mayor y riesgo elevado de autolesiones</li>
+        <li>Dificultades para confiar en otras personas o formar relaciones sanas</li>
+        <li>Bajo rendimiento académico y menor acceso a oportunidades laborales</li>
+        <li>Problemas de autoestima que persisten hasta la vida adulta</li>
+      </ul>
+      <p style="margin-top:10px;color:#b8b5d8">✅ La buena noticia: con apoyo adecuado (familiar, escolar y psicológico), la mayoría de las víctimas se recupera completamente.</p>
+    </div>
+  </div>
+
+  <div class="accordion">
+    <div class="acc-header" onclick="toggleAcc(this)">
+      <span>👨‍👩‍👧 ¿Cómo hablo con mi hijo/a si sospecho que sufre bullying?</span>
+      <span class="acc-arrow">▼</span>
+    </div>
+    <div class="acc-body">
+      <p style="margin-bottom:10px;color:#e8e6ff">La forma en que reaccionas al principio marca si tu hijo seguirá contándote cosas:</p>
+      <ul style="padding-left:16px;line-height:2">
+        <li><strong>Elige el momento:</strong> un rato tranquilo, sin pantallas ni prisas</li>
+        <li><strong>Preguntas abiertas:</strong> "¿Cómo fue el recreo hoy?" en lugar de "¿Te han pegado?"</li>
+        <li><strong>Escucha sin interrumpir</strong> ni restar importancia: "Eso no es para tanto" cierra la conversación</li>
+        <li><strong>No culpes:</strong> "¿Y tú qué hiciste?" puede hacer que se sienta responsable</li>
+        <li><strong>Valida:</strong> "Entiendo que estés asustado, hiciste bien en contármelo"</li>
+        <li><strong>Actúa:</strong> habla con el colegio, pero infórmale antes de hacer nada para no quitarle el control</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<!-- SECTION: CÓMO ACTUAR -->
+<div class="section" id="como-actuar">
+  <h2 class="section-title">¿Qué puedo hacer?</h2>
+  <p class="section-sub">La respuesta depende de tu rol. Toca cada situación para ver los pasos detallados.</p>
+
+  <div class="info-grid">
+    <div class="info-card" style="border-top:4px solid #4a6ee0">
+      <div class="card-body">
+        <div class="card-icon-wrap" style="background:rgba(41,82,255,.2);font-size:26px">😢</div>
+        <h3 style="color:#4a6ee0">Soy víctima</h3>
+        <div class="steps" style="margin-top:12px;margin-bottom:0">
+          <div class="step" style="padding:8px 0 8px 20px"><div class="step-icon" style="font-size:16px">1️⃣</div><div><h4 style="font-size:13px">No te quedes solo</h4><p>Cuéntaselo a un adulto de confianza hoy mismo. No tienes que cargar esto solo.</p></div></div>
+          <div class="step" style="padding:8px 0 8px 20px"><div class="step-icon" style="font-size:16px">2️⃣</div><div><h4 style="font-size:13px">Guarda evidencias</h4><p>Capturas de pantalla, fechas, mensajes. Todo cuenta como prueba.</p></div></div>
+          <div class="step" style="padding:8px 0 8px 20px"><div class="step-icon" style="font-size:16px">3️⃣</div><div><h4 style="font-size:13px">Habla con el orientador</h4><p>La escuela tiene obligación legal de actuar y protegerte.</p></div></div>
+        </div>
+      </div>
+    </div>
+    <div class="info-card" style="border-top:4px solid #2dbfa0">
+      <div class="card-body">
+        <div class="card-icon-wrap" style="background:rgba(0,212,170,.15);font-size:26px">👀</div>
+        <h3 style="color:#2dbfa0">Soy testigo</h3>
+        <div class="steps" style="margin-top:12px;margin-bottom:0">
+          <div class="step" style="padding:8px 0 8px 20px"><div class="step-icon" style="font-size:16px">1️⃣</div><div><h4 style="font-size:13px">No te rías ni participes</h4><p>Tu indiferencia o risa da poder al agresor. Romper ese ciclo importa.</p></div></div>
+          <div class="step" style="padding:8px 0 8px 20px"><div class="step-icon" style="font-size:16px">2️⃣</div><div><h4 style="font-size:13px">Apoya a la víctima</h4><p>Un simple "¿estás bien?" después puede cambiar mucho para esa persona.</p></div></div>
+          <div class="step" style="padding:8px 0 8px 20px"><div class="step-icon" style="font-size:16px">3️⃣</div><div><h4 style="font-size:13px">Avisa a un adulto</h4><p>No es "chivarse". Es proteger a alguien que no puede hacerlo solo en ese momento.</p></div></div>
+        </div>
+      </div>
+    </div>
+    <div class="info-card" style="border-top:4px solid #e05a8a">
+      <div class="card-body">
+        <div class="card-icon-wrap" style="background:rgba(255,26,110,.15);font-size:26px">👨‍👩‍👧</div>
+        <h3 style="color:#e05a8a">Soy padre o madre</h3>
+        <div class="steps" style="margin-top:12px;margin-bottom:0">
+          <div class="step" style="padding:8px 0 8px 20px"><div class="step-icon" style="font-size:16px">1️⃣</div><div><h4 style="font-size:13px">Escucha sin juzgar</h4><p>Primero valida sus emociones. Que sienta que puede contártelo todo.</p></div></div>
+          <div class="step" style="padding:8px 0 8px 20px"><div class="step-icon" style="font-size:16px">2️⃣</div><div><h4 style="font-size:13px">Contacta al centro escolar</h4><p>Solicita una reunión con orientador o dirección. Lleva evidencias.</p></div></div>
+          <div class="step" style="padding:8px 0 8px 20px"><div class="step-icon" style="font-size:16px">3️⃣</div><div><h4 style="font-size:13px">Busca apoyo profesional</h4><p>Un psicólogo infantil o juvenil puede ayudar a gestionar el trauma.</p></div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <h3 style="font-size:17px;font-weight:800;margin-bottom:12px;color:#fff">Guías detalladas por situación</h3>
+
+  <div class="accordion">
+    <div class="acc-header" onclick="toggleAcc(this)">
+      <span>😢 Si eres víctima — guía completa paso a paso</span>
+      <span class="acc-arrow">▼</span>
+    </div>
+    <div class="acc-body">
+      <p style="margin-bottom:10px;color:#e8e6ff"><strong>Lo más importante:</strong> el bullying nunca es culpa tuya. Pedir ayuda es valiente, no débil.</p>
+      <ol style="padding-left:18px;line-height:2.1">
+        <li><strong>Cuéntaselo a alguien hoy:</strong> un padre, madre, profesor, orientador o familiar adulto. Elige a quien más confianza le tengas.</li>
+        <li><strong>Documenta todo:</strong> anota fechas, lugares y qué pasó. Si es online, haz capturas antes de borrar nada.</li>
+        <li><strong>Evita la confrontación directa:</strong> responder con violencia o gritos casi siempre empeora la situación.</li>
+        <li><strong>Muévete en grupo:</strong> en recreos o pasillos, intenta no estar solo. Los agresores actúan menos cuando hay testigos.</li>
+        <li><strong>Habla con el orientador escolar:</strong> el centro tiene la obligación de abrir un protocolo de actuación.</li>
+        <li><strong>Si hay riesgo físico:</strong> aléjate y busca a un adulto de inmediato. Tu seguridad física es lo primero.</li>
+        <li><strong>Cuida tu bienestar:</strong> habla con un psicólogo si sientes ansiedad, tristeza prolongada o dificultades para dormir.</li>
+      </ol>
+    </div>
+  </div>
+
+  <div class="accordion">
+    <div class="acc-header" onclick="toggleAcc(this)">
+      <span>👀 Si eres testigo — cómo ayudar sin ponerte en riesgo</span>
+      <span class="acc-arrow">▼</span>
+    </div>
+    <div class="acc-body">
+      <p style="margin-bottom:10px;color:#e8e6ff">No tienes que ser un héroe. Hay formas de ayudar que no te ponen en peligro:</p>
+      <ul style="padding-left:16px;line-height:2">
+        <li><strong>Intervención directa:</strong> si es seguro, di al agresor que pare. A veces basta con "déjale en paz" dicho con calma.</li>
+        <li><strong>Apoyo indirecto:</strong> si no te atreves a intervenir en el momento, busca después a la víctima y pregúntale cómo está.</li>
+        <li><strong>Avisa a un adulto:</strong> cuéntaselo a un profesor, orientador o familiar. No tienes que decir quién eres si no quieres.</li>
+        <li><strong>No compartas contenido dañino:</strong> si te mandan fotos, videos o mensajes humillantes, no los reenvíes. Puedes reportarlos.</li>
+        <li><strong>Rompe la "ley del silencio":</strong> el bullying se mantiene porque nadie habla. Tú puedes romper ese ciclo.</li>
+      </ul>
+      <p style="margin-top:10px;color:#b8b5d8">💡 Recuerda: los testigos que intervienen detienen el bullying en el <strong>57% de los casos</strong> en menos de 10 segundos.</p>
+    </div>
+  </div>
+
+  <div class="accordion">
+    <div class="acc-header" onclick="toggleAcc(this)">
+      <span>👨‍👩‍👧 Si eres padre o madre — protocolo con la escuela</span>
+      <span class="acc-arrow">▼</span>
+    </div>
+    <div class="acc-body">
+      <p style="margin-bottom:10px;color:#e8e6ff">Actuar rápido y con calma es clave. Sigue estos pasos:</p>
+      <ol style="padding-left:18px;line-height:2.1">
+        <li><strong>Escucha primero, actúa después:</strong> haz que tu hijo se sienta escuchado antes de hacer llamadas o ir al colegio.</li>
+        <li><strong>Recoge evidencias:</strong> fotos de lesiones, capturas de mensajes, anotaciones con fechas y descripciones.</li>
+        <li><strong>Solicita reunión con orientador y dirección:</strong> pide por escrito que se abra un protocolo de actuación anti-bullying.</li>
+        <li><strong>Exige seguimiento:</strong> no basta con una reunión. Pide actualizaciones semanales sobre las medidas tomadas.</li>
+        <li><strong>Si la escuela no actúa:</strong> puedes presentar una queja ante la Inspección Educativa o, si hay delito, denunciar a la policía.</li>
+        <li><strong>Apoyo psicológico:</strong> busca un profesional que trabaje con niños y adolescentes. No esperes a que "se le pase solo".</li>
+      </ol>
+    </div>
+  </div>
+
+  <div class="accordion">
+    <div class="acc-header" onclick="toggleAcc(this)">
+      <span>🏫 Si eres docente u orientador — cómo intervenir</span>
+      <span class="acc-arrow">▼</span>
+    </div>
+    <div class="acc-body">
+      <p style="margin-bottom:10px;color:#e8e6ff">El profesorado tiene un papel fundamental. Algunas pautas clave:</p>
+      <ul style="padding-left:16px;line-height:2">
+        <li><strong>No minimices:</strong> frases como "son cosas de niños" o "hay que aprender a defenderse" normalizan la violencia.</li>
+        <li><strong>Intervén en el momento:</strong> si presencias un episodio, actúa de inmediato. Tu presencia sola reduce el comportamiento agresivo.</li>
+        <li><strong>Habla por separado:</strong> primero con la víctima (para que se sienta segura), luego con el agresor, luego con los testigos.</li>
+        <li><strong>Aplica el protocolo del centro:</strong> documenta el caso y notifica a dirección y familias según el procedimiento establecido.</li>
+        <li><strong>Trabaja la empatía en el aula:</strong> actividades de convivencia, role-playing y círculos de diálogo previenen el bullying a largo plazo.</li>
+        <li><strong>Cuida también al agresor:</strong> en muchos casos necesita apoyo psicológico para cambiar su comportamiento.</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="alert success">
+    <div class="alert-icon">💪</div>
+    <div><h4>Recuerda siempre</h4><p>Pedir ayuda no es debilidad — es el acto más valiente que puedes hacer. Más del 80% de los casos mejoran cuando hay intervención adulta a tiempo. No esperes.</p></div>
+  </div>
+</div>
+
+<!-- SECTION: CIBERBULLYING -->
+<div class="section" id="cyber">
+  <h2 class="section-title">Ciberbullying</h2>
+  <p class="section-sub">El acoso online es tan real y dañino como el presencial — y no para cuando llegas a casa.</p>
+
+  <div class="alert danger">
+    <div class="alert-icon">📱</div>
+    <div><h4>¿Qué lo hace diferente al bullying presencial?</h4><p>Puede llegar a tu habitación a las 3 de la madrugada, ser visto por cientos de personas en segundos y dejar rastro permanente. La víctima no puede escapar "apagando la escuela".</p></div>
+  </div>
+
+  <div class="stat-row">
+    <div class="stat"><div class="stat-num" style="color:#f4845f">40%</div><div class="stat-label">del bullying actual ocurre online</div></div>
+    <div class="stat"><div class="stat-num" style="color:#e05a8a">70%</div><div class="stat-label">no lo cuenta a sus padres</div></div>
+    <div class="stat"><div class="stat-num" style="color:#7b5ea7">13–15</div><div class="stat-label">años: pico de riesgo</div></div>
+    <div class="stat"><div class="stat-num" style="color:#4a6ee0">24h</div><div class="stat-label">sin descanso posible</div></div>
+  </div>
+
+  <div class="accordion">
+    <div class="acc-header" onclick="toggleAcc(this)"><span>🚫 Tipos de ciberbullying — cuáles existen</span><span class="acc-arrow">▼</span></div>
+    <div class="acc-body">
+      <ul style="padding-left:0;list-style:none;line-height:1">
+        <li style="padding:8px 0;border-bottom:1px solid #eee"><strong>💬 Harassment (hostigamiento):</strong> mensajes hirientes, insultos o amenazas repetidos por chat o redes sociales.</li>
+        <li style="padding:8px 0;border-bottom:1px solid #eee"><strong>🔥 Flaming:</strong> peleas agresivas online donde se usan palabras violentas deliberadamente para provocar.</li>
+        <li style="padding:8px 0;border-bottom:1px solid #eee"><strong>🚪 Exclusión:</strong> sacar a alguien de grupos de WhatsApp o juegos online para hacerle sentir rechazado.</li>
+        <li style="padding:8px 0;border-bottom:1px solid #eee"><strong>📢 Outing:</strong> revelar públicamente secretos, fotos privadas o información íntima sin permiso.</li>
+        <li style="padding:8px 0;border-bottom:1px solid #eee"><strong>👤 Suplantación:</strong> crear perfiles falsos haciéndose pasar por la víctima para dañar su reputación.</li>
+        <li style="padding:8px 0;border-bottom:1px solid #eee"><strong>🎭 Denigración:</strong> publicar fotos, videos o comentarios falsos o humillantes sobre alguien.</li>
+        <li style="padding:8px 0"><strong>🔍 Cyberstalking:</strong> seguimiento y acoso constante por internet, monitorear todas las publicaciones de la víctima.</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="accordion">
+    <div class="acc-header" onclick="toggleAcc(this)"><span>✅ ¿Qué hago si me está pasando ahora?</span><span class="acc-arrow">▼</span></div>
+    <div class="acc-body">
+      <p style="margin-bottom:10px;color:#e8e6ff"><strong>Actúa en este orden — no improvises:</strong></p>
+      <ol style="padding-left:18px;line-height:2.2">
+        <li><strong>No respondas.</strong> Responder casi siempre empeora la situación y da más material al agresor.</li>
+        <li><strong>Guarda capturas de pantalla</strong> de todo: mensajes, publicaciones, perfiles. Son tus evidencias.</li>
+        <li><strong>Bloquea al agresor</strong> en todas las plataformas donde aparezca.</li>
+        <li><strong>Reporta el contenido</strong> a la red social (todas tienen botones de denuncia).</li>
+        <li><strong>Cuéntaselo a un adulto</strong> de confianza: padre, madre, orientador. No lo cargues solo.</li>
+        <li><strong>Si hay fotos íntimas o amenazas</strong>: es un delito en la mayoría de países. Presenta denuncia ante la policía con las capturas.</li>
+        <li><strong>Cuida tu bienestar:</strong> desconéctate un tiempo si lo necesitas. Tu salud mental importa más que las redes.</li>
+      </ol>
+    </div>
+  </div>
+
+  <div class="accordion">
+    <div class="acc-header" onclick="toggleAcc(this)"><span>🔒 Cómo protegerte online antes de que pase</span><span class="acc-arrow">▼</span></div>
+    <div class="acc-body">
+      <p style="margin-bottom:10px;color:#e8e6ff">La prevención es más fácil que la solución. Estas medidas reducen muchísimo el riesgo:</p>
+      <ul style="padding-left:16px;line-height:2">
+        <li><strong>Perfiles en privado:</strong> solo tus amigos de confianza deben ver tus publicaciones.</li>
+        <li><strong>Contraseñas seguras:</strong> no las compartas con nadie, ni con tu mejor amigo/a.</li>
+        <li><strong>Piensa antes de publicar:</strong> lo que subes a internet puede quedar para siempre, aunque lo borres.</li>
+        <li><strong>No aceptes desconocidos:</strong> si no conoces a alguien en persona, no le aceptes en redes.</li>
+        <li><strong>Cuida lo que compartes en grupo:</strong> los chats de grupo son el lugar más frecuente de ciberbullying.</li>
+        <li><strong>Activa las notificaciones de seguridad:</strong> en muchas redes puedes recibir alertas de accesos extraños.</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="accordion">
+    <div class="acc-header" onclick="toggleAcc(this)"><span>👨‍👩‍👧 Si tu hijo sufre ciberbullying — guía para familias</span><span class="acc-arrow">▼</span></div>
+    <div class="acc-body">
+      <p style="margin-bottom:10px;color:#e8e6ff">Muchos menores no lo cuentan por miedo a perder el móvil o a que los padres exageren. Así puedes ayudar sin que se cierre:</p>
+      <ul style="padding-left:16px;line-height:2">
+        <li><strong>No reacciones con pánico</strong> ni con "te quito el móvil". Eso le hace sentir culpable y deja de contarte.</li>
+        <li><strong>Valida primero:</strong> "Hiciste bien en contarme. Esto no es tu culpa."</li>
+        <li><strong>Guarda las evidencias juntos</strong> antes de bloquear o borrar nada.</li>
+        <li><strong>Contacta con el colegio</strong> si el agresor es un compañero — el ciberbullying entre alumnos también es competencia escolar.</li>
+        <li><strong>Denuncia si es necesario:</strong> la Policía y la Guardia Civil tienen unidades especializadas en delitos online.</li>
+        <li><strong>Vigila su estado emocional:</strong> síntomas de ansiedad, aislamiento o cambios bruscos pueden requerir apoyo psicológico.</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="alert info" style="margin-top:12px">
+    <div class="alert-icon">⚖️</div>
+    <div><h4>¿Es ilegal el ciberbullying?</h4><p>En muchos países sí constituye delito: publicar fotos íntimas sin permiso (sextorsión), suplantar identidades, amenazar o acosar de forma reiterada pueden perseguirse legalmente, incluso siendo menor de edad. Guarda siempre las evidencias.</p></div>
+  </div>
+</div>
+
+<!-- SECTION: CHAT -->
+<div class="section" id="chat">
+  <h2 class="section-title">Tu compañero de apoyo</h2>
+  <p class="section-sub">Ponle nombre a tu compañero y cuéntale lo que necesites — sin juicios, sin prisa.</p>
+
+  <!-- SETUP SCREEN -->
+  <div id="setupScreen">
+    <div class="setup-card">
+      <div class="setup-hero">
+        <div class="setup-preview" id="setupPreview">🤝</div>
+        <h3 class="setup-heading">¿Cómo quieres llamar a tu compañero?</h3>
+        <p class="setup-desc">Elige un nombre y un avatar. Solo tú lo verás.</p>
+      </div>
+
+      <div class="emoji-row" id="emojiRow">
+        <button class="emoji-btn active" onclick="pickEmoji(this,'🤝')">🤝</button>
+        <button class="emoji-btn" onclick="pickEmoji(this,'🐶')">🐶</button>
+        <button class="emoji-btn" onclick="pickEmoji(this,'🦊')">🦊</button>
+        <button class="emoji-btn" onclick="pickEmoji(this,'🐱')">🐱</button>
+        <button class="emoji-btn" onclick="pickEmoji(this,'🐼')">🐼</button>
+        <button class="emoji-btn" onclick="pickEmoji(this,'🦁')">🦁</button>
+        <button class="emoji-btn" onclick="pickEmoji(this,'🐸')">🐸</button>
+        <button class="emoji-btn" onclick="pickEmoji(this,'🦋')">🦋</button>
+        <button class="emoji-btn" onclick="pickEmoji(this,'⭐')">⭐</button>
+        <button class="emoji-btn" onclick="pickEmoji(this,'🌈')">🌈</button>
+      </div>
+
+      <div class="name-input-wrap">
+        <input id="companionNameInput" class="name-input" maxlength="20"
+          placeholder="Escribe un nombre... (ej: Luna, Max, Kira)"
+          oninput="updatePreviewName(this.value)"
+          onkeydown="if(event.key==='Enter')startChat()">
+        <div class="name-counter" id="nameCounter">0 / 20</div>
+      </div>
+
+      <div class="name-suggestions">
+        <span class="name-sug" onclick="suggestName('Luna')">Luna</span>
+        <span class="name-sug" onclick="suggestName('Max')">Max</span>
+        <span class="name-sug" onclick="suggestName('Kira')">Kira</span>
+        <span class="name-sug" onclick="suggestName('Luca')">Luca</span>
+        <span class="name-sug" onclick="suggestName('Nova')">Nova</span>
+        <span class="name-sug" onclick="suggestName('Finn')">Finn</span>
+        <span class="name-sug" onclick="suggestName('Cleo')">Cleo</span>
+        <span class="name-sug" onclick="suggestName('Bri')">Bri</span>
+      </div>
+
+      <button class="start-btn" id="startBtn" onclick="startChat()">
+        Empezar a hablar con mi compañero →
+      </button>
+    </div>
+  </div>
+
+  <!-- CHAT SCREEN (hidden until setup) -->
+  <div id="chatScreen" style="display:none">
+    <div class="chat-wrap">
+      <div class="chat-head">
+        <div class="avatar" id="chatAvatar">🤝</div>
+        <div class="chat-head-info">
+          <strong id="chatName">Tu compañero</strong>
+          <div class="online"><div class="online-dot"></div> <span id="chatStatus">Aquí para escucharte</span></div>
+        </div>
+        <button class="rename-btn" onclick="resetCompanion()" title="Cambiar compañero">✏️</button>
+      </div>
+      <div class="messages" id="msgs"></div>
+      <div class="chips-row">
+        <span class="chip" onclick="ask('¿Qué es exactamente el bullying?')">¿Qué es el bullying?</span>
+        <span class="chip" onclick="ask('Estoy sufriendo bullying en la escuela y no sé qué hacer')">Me hacen bullying</span>
+        <span class="chip" onclick="ask('¿Cómo puedo ayudar a mi amigo que sufre bullying?')">Ayudar a un amigo</span>
+        <span class="chip" onclick="ask('Me están haciendo ciberbullying, ¿qué hago?')">Ciberbullying</span>
+        <span class="chip" onclick="ask('¿Cómo le cuento esto a mis padres?')">Hablar con padres</span>
+      </div>
+      <div class="input-row">
+        <input class="msg-input" id="inp" placeholder="Escríbele a tu compañero..." onkeydown="if(event.key==='Enter')send()">
+        <button class="send-btn" id="sendBtn" onclick="send()">➤</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- SECTION: DENUNCIAR -->
+<div class="section" id="denunciar">
+  <h2 class="section-title">Denunciar contenido abusivo</h2>
+  <p class="section-sub">Si publicaron fotos o videos de ti o de alguien más para burlarse, aquí tienes los pasos exactos para reportarlo.</p>
+
+  <div class="alert danger">
+    <div class="alert-icon">📸</div>
+    <div>
+      <h4>Haz esto ANTES de reportar</h4>
+      <p>Toma capturas de pantalla del contenido, del perfil del agresor y de la URL. No borres nada todavía — las evidencias son clave si luego necesitas hacer una denuncia formal.</p>
+    </div>
+  </div>
+
+  <!-- PLATAFORMAS -->
+  <div class="report-grid">
+
+    <!-- INSTAGRAM -->
+    <div class="report-card report-card--featured" style="--rc:#E1306C">
+      <div class="report-logo">📸</div>
+      <div class="report-info">
+        <strong>Instagram</strong>
+        <span class="report-tag" style="background:rgba(255,26,110,.15);color:#c0254f">Red más usada para burlas escolares</span>
+        <p class="report-desc">Reporta fotos, reels, stories, comentarios, DMs y perfiles falsos.</p>
+        <div class="report-subtypes">
+          <div class="report-subtype">
+            <div class="rst-title">📷 Foto o video de burla en el feed</div>
+            <ol class="rst-steps">
+              <li>Abre la publicación → toca <strong>···</strong> arriba a la derecha</li>
+              <li>Selecciona <strong>"Denunciar"</strong></li>
+              <li>Elige <strong>"Es inapropiado" → "Acoso o bullying"</strong></li>
+              <li>Indica que aparece otra persona → envía</li>
+            </ol>
+          </div>
+          <div class="report-subtype">
+            <div class="rst-title">📖 Story o Reel humillante</div>
+            <ol class="rst-steps">
+              <li>Mantén pulsada la story o toca <strong>···</strong> en el reel</li>
+              <li>Toca <strong>"Denunciar"</strong></li>
+              <li>Elige <strong>"Acoso o bullying"</strong> → confirma</li>
+            </ol>
+          </div>
+          <div class="report-subtype">
+            <div class="rst-title">👤 Perfil falso o cuenta de burla</div>
+            <ol class="rst-steps">
+              <li>Ve al perfil → toca <strong>···</strong> arriba a la derecha</li>
+              <li>Selecciona <strong>"Denunciar"</strong></li>
+              <li>Elige <strong>"Se hace pasar por alguien"</strong> o <strong>"Acoso"</strong></li>
+            </ol>
+          </div>
+          <div class="report-subtype">
+            <div class="rst-title">💬 Comentario ofensivo</div>
+            <ol class="rst-steps">
+              <li>Mantén pulsado el comentario</li>
+              <li>Toca el icono <strong>(!)</strong> de signo de exclamación</li>
+              <li>Selecciona el motivo y envía</li>
+            </ol>
+          </div>
+          <div class="report-subtype">
+            <div class="rst-title">✉️ Mensaje directo (DM) de acoso</div>
+            <ol class="rst-steps">
+              <li>Abre el DM → mantén pulsado el mensaje</li>
+              <li>Toca <strong>"Denunciar"</strong></li>
+              <li>Para bloquear también: ve al perfil → <strong>"Bloquear"</strong></li>
+            </ol>
+          </div>
+        </div>
+      </div>
+      <div class="report-btns">
+        <a class="report-btn" href="https://help.instagram.com/contact/584460464982589" target="_blank" rel="noopener">Formulario oficial de Instagram ↗</a>
+        <a class="report-btn report-btn--sec" href="https://help.instagram.com/527320407282978" target="_blank" rel="noopener">Guía de privacidad y seguridad ↗</a>
+      </div>
+    </div>
+
+    <!-- TIKTOK -->
+    <div class="report-card report-card--featured" style="--rc:#010101">
+      <div class="report-logo">🎵</div>
+      <div class="report-info">
+        <strong>TikTok</strong>
+        <span class="report-tag" style="background:#f0f0f0;color:#222">Donde más se viralizan burlas entre jóvenes</span>
+        <p class="report-desc">Reporta videos, duetos, comentarios, cuentas y lives. TikTok tiene 48h para revisar denuncias urgentes.</p>
+        <div class="report-subtypes">
+          <div class="report-subtype">
+            <div class="rst-title">🎬 Video de burla o humillación</div>
+            <ol class="rst-steps">
+              <li>Toca <strong>"Compartir"</strong> (flecha →) en el video</li>
+              <li>Selecciona <strong>"Denunciar"</strong></li>
+              <li>Elige <strong>"Acoso y bullying"</strong> → confirma</li>
+            </ol>
+          </div>
+          <div class="report-subtype">
+            <div class="rst-title">🔁 Dueto o Stitch no consentido</div>
+            <ol class="rst-steps">
+              <li>Mismos pasos que un video normal</li>
+              <li>En el motivo indica <strong>"Acoso"</strong> y que es un dueto sin permiso</li>
+            </ol>
+          </div>
+          <div class="report-subtype">
+            <div class="rst-title">💬 Comentario ofensivo</div>
+            <ol class="rst-steps">
+              <li>Mantén pulsado el comentario</li>
+              <li>Selecciona <strong>"Denunciar"</strong></li>
+              <li>Elige <strong>"Acoso o lenguaje ofensivo"</strong></li>
+            </ol>
+          </div>
+          <div class="report-subtype">
+            <div class="rst-title">👤 Cuenta que imita o se burla</div>
+            <ol class="rst-steps">
+              <li>Ve al perfil → toca <strong>···</strong> arriba a la derecha</li>
+              <li>Selecciona <strong>"Denunciar"</strong></li>
+              <li>Elige <strong>"Suplantación de identidad"</strong> o <strong>"Acoso"</strong></li>
+            </ol>
+          </div>
+          <div class="report-subtype">
+            <div class="rst-title">📺 Live en directo con burlas</div>
+            <ol class="rst-steps">
+              <li>Durante el live toca el icono de bandera 🚩</li>
+              <li>Selecciona <strong>"Denunciar este live"</strong></li>
+              <li>Elige <strong>"Acoso o bullying"</strong></li>
+            </ol>
+          </div>
+          <div class="report-subtype">
+            <div class="rst-title">📩 Mensaje directo de acoso</div>
+            <ol class="rst-steps">
+              <li>Abre el mensaje → mantén pulsado</li>
+              <li>Toca <strong>"Denunciar"</strong> y selecciona el motivo</li>
+              <li>Bloquea desde el mismo menú si lo necesitas</li>
+            </ol>
+          </div>
+        </div>
+      </div>
+      <div class="report-btns">
+        <a class="report-btn" href="https://www.tiktok.com/legal/report/feedback" target="_blank" rel="noopener">Formulario oficial de TikTok ↗</a>
+        <a class="report-btn report-btn--sec" href="https://www.tiktok.com/safety/es/cyberbullying-prevention/" target="_blank" rel="noopener">Centro de seguridad TikTok ↗</a>
+      </div>
+    </div>
+
+    <!-- FACEBOOK -->
+    <div class="report-card report-card--featured" style="--rc:#1877F2">
+      <div class="report-logo">👥</div>
+      <div class="report-info">
+        <strong>Facebook</strong>
+        <span class="report-tag" style="background:#e8f0fe;color:#1565c0">Grupos privados donde circulan fotos de estudiantes</span>
+        <p class="report-desc">Reporta publicaciones, fotos, grupos enteros, perfiles falsos y mensajes de Messenger.</p>
+        <div class="report-subtypes">
+          <div class="report-subtype">
+            <div class="rst-title">📝 Publicación o foto humillante</div>
+            <ol class="rst-steps">
+              <li>Toca <strong>···</strong> en la esquina de la publicación</li>
+              <li>Selecciona <strong>"Buscar ayuda o denunciar publicación"</strong></li>
+              <li>Elige <strong>"Acoso o bullying"</strong> → indica si apareces tú</li>
+            </ol>
+          </div>
+          <div class="report-subtype">
+            <div class="rst-title">👥 Grupo donde comparten fotos de burla</div>
+            <ol class="rst-steps">
+              <li>Ve al grupo → toca <strong>···</strong> en "Acerca de"</li>
+              <li>Selecciona <strong>"Denunciar grupo"</strong></li>
+              <li>Elige <strong>"Acoso o bullying"</strong> y describe el caso</li>
+            </ol>
+          </div>
+          <div class="report-subtype">
+            <div class="rst-title">👤 Perfil falso creado para humillar</div>
+            <ol class="rst-steps">
+              <li>Ve al perfil → toca <strong>···</strong> bajo la foto de portada</li>
+              <li>Selecciona <strong>"Encontrar ayuda o denunciar"</strong></li>
+              <li>Elige <strong>"Se hace pasar por alguien"</strong></li>
+            </ol>
+          </div>
+          <div class="report-subtype">
+            <div class="rst-title">💬 Comentario ofensivo</div>
+            <ol class="rst-steps">
+              <li>Toca <strong>···</strong> junto al comentario</li>
+              <li>Selecciona <strong>"Encontrar ayuda o denunciar"</strong></li>
+              <li>Elige el motivo apropiado y envía</li>
+            </ol>
+          </div>
+          <div class="report-subtype">
+            <div class="rst-title">📩 Mensaje de Messenger con acoso</div>
+            <ol class="rst-steps">
+              <li>Mantén pulsado el mensaje → toca <strong>"Más"</strong></li>
+              <li>Selecciona <strong>"Algo me preocupa"</strong></li>
+              <li>Elige el motivo y envía la denuncia</li>
+            </ol>
+          </div>
+        </div>
+      </div>
+      <div class="report-btns">
+        <a class="report-btn" href="https://www.facebook.com/help/contact/274459462613911" target="_blank" rel="noopener">Formulario oficial de Facebook ↗</a>
+        <a class="report-btn report-btn--sec" href="https://www.facebook.com/safety/bullying" target="_blank" rel="noopener">Centro contra el bullying ↗</a>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="alert success" style="margin-top:20px">
+    <div class="alert-icon">💪</div>
+    <div>
+      <h4>Denunciar es un acto de valentía</h4>
+      <p>No estás haciendo nada malo al reportar — estás protegiendo tu dignidad y la de otros. Las plataformas están obligadas a retirar contenido abusivo en menos de 48 horas.</p>
+    </div>
+  </div>
+</div>
+
+
+<!-- SECTION: ENCUESTA -->
+<div class="section" id="encuesta">
+  <h2 class="section-title">Encuesta anónima</h2>
+  <p class="section-sub">Cuéntanos cómo estás. Nadie sabrá que eres tú — tus respuestas se guardan de forma completamente anónima.</p>
+
+  <div class="survey-wrap">
+    <div class="survey-header">
+      <div class="survey-icon">🔒</div>
+      <div>
+        <h3 class="survey-title">¿Cómo estás hoy?</h3>
+        <p class="survey-sub">Solo tú y las estadísticas generales. Tu identidad nunca se guarda.</p>
+      </div>
+    </div>
+
+    <div id="surveyForm">
+      <div class="sq-block">
+        <div class="sq-label">1. ¿Estás viviendo alguna situación de bullying?</div>
+        <div class="sq-options">
+          <label class="sq-opt"><input type="radio" name="q1" value="victima"> Me está pasando a mí</label>
+          <label class="sq-opt"><input type="radio" name="q1" value="conocido"> Le pasa a alguien que conozco</label>
+          <label class="sq-opt"><input type="radio" name="q1" value="testigo"> Lo he visto pero no me afecta directamente</label>
+          <label class="sq-opt"><input type="radio" name="q1" value="informacion"> No, solo quiero informarme</label>
+        </div>
+      </div>
+
+      <div class="sq-block">
+        <div class="sq-label">2. ¿Qué tipo de bullying es? (puedes marcar varios)</div>
+        <div class="sq-options">
+          <label class="sq-opt"><input type="checkbox" name="q2" value="fisico"> 🤜 Físico (golpes, empujones)</label>
+          <label class="sq-opt"><input type="checkbox" name="q2" value="verbal"> 💬 Verbal (insultos, apodos)</label>
+          <label class="sq-opt"><input type="checkbox" name="q2" value="social"> 👥 Social (excluyen, ignoran)</label>
+          <label class="sq-opt"><input type="checkbox" name="q2" value="cyber"> 📱 Ciberbullying (redes, fotos)</label>
+          <label class="sq-opt"><input type="checkbox" name="q2" value="nose"> ❓ No estoy seguro/a</label>
+        </div>
+      </div>
+
+      <div class="sq-block">
+        <div class="sq-label">3. ¿Cuánto tiempo lleva pasando?</div>
+        <div class="sq-options">
+          <label class="sq-opt"><input type="radio" name="q3" value="dias"> Unos días</label>
+          <label class="sq-opt"><input type="radio" name="q3" value="semanas"> Varias semanas</label>
+          <label class="sq-opt"><input type="radio" name="q3" value="meses"> Varios meses</label>
+          <label class="sq-opt"><input type="radio" name="q3" value="anio"> Más de un año</label>
+          <label class="sq-opt"><input type="radio" name="q3" value="na"> No aplica / no sé</label>
+        </div>
+      </div>
+
+      <div class="sq-block">
+        <div class="sq-label">4. ¿Cómo te sientes en este momento?</div>
+        <div class="sq-options sq-options--emoji">
+          <label class="sq-opt sq-opt--emoji"><input type="radio" name="q4" value="muy_mal"><span>😢</span>Muy mal</label>
+          <label class="sq-opt sq-opt--emoji"><input type="radio" name="q4" value="asustado"><span>😨</span>Asustado/a</label>
+          <label class="sq-opt sq-opt--emoji"><input type="radio" name="q4" value="confundido"><span>😕</span>Confundido/a</label>
+          <label class="sq-opt sq-opt--emoji"><input type="radio" name="q4" value="enojado"><span>😠</span>Enojado/a</label>
+          <label class="sq-opt sq-opt--emoji"><input type="radio" name="q4" value="bien"><span>🙂</span>Bien</label>
+        </div>
+      </div>
+
+      <div class="sq-block">
+        <div class="sq-label">5. ¿Has contado esto a algún adulto?</div>
+        <div class="sq-options">
+          <label class="sq-opt"><input type="radio" name="q5" value="si"> Sí, ya lo sabe alguien</label>
+          <label class="sq-opt"><input type="radio" name="q5" value="miedo"> No, tengo miedo de contarlo</label>
+          <label class="sq-opt"><input type="radio" name="q5" value="nocreer"> No, creo que no me van a creer</label>
+          <label class="sq-opt"><input type="radio" name="q5" value="na"> No aplica</label>
+        </div>
+      </div>
+
+      <div class="sq-block">
+        <div class="sq-label">6. ¿Qué necesitarías ahora mismo? <span style="font-weight:400;color:#b8b5d8">(opcional)</span></div>
+        <textarea class="sq-textarea" id="sqTextarea" placeholder="Escribe lo que quieras... nadie lo verá asociado a ti." maxlength="300"></textarea>
+        <div class="sq-charcount"><span id="sqCharCount">0</span> / 300</div>
+      </div>
+
+      <button class="sq-submit" onclick="submitSurvey()">Enviar de forma anónima 🔒</button>
+    </div>
+
+    <div id="surveyResult" style="display:none" class="survey-result"></div>
+  </div>
+</div>
+
+
+<!-- SECTION: RESULTADOS -->
+<div class="section" id="resultados">
+  <h2 class="section-title">Respuestas recibidas</h2>
+  <p class="section-sub">Aquí se muestran todas las encuestas enviadas de forma anónima. Los datos se guardan aunque cierres la página.</p>
+  <div id="resultsPanel">
+    <div class="results-loading">Cargando respuestas...</div>
+  </div>
+</div>
+
+
+
+<!-- SECTION: JUEGO 1 — ¿Qué harías? -->
+<div class="section" id="juego1">
+  <h2 class="section-title">🎮 ¿Qué harías tú?</h2>
+  <p class="section-sub">Lee cada situación y elige la mejor respuesta. Aprende a actuar frente al bullying tomando decisiones reales.</p>
+  <div id="g1-container" style="max-width:720px;margin:0 auto;width:100%"></div>
+</div>
+
+<!-- SECTION: JUEGO 2 — Palabras que sanan -->
+<div class="section" id="juego2">
+  <h2 class="section-title">🕹️ Palabras que sanan</h2>
+  <p class="section-sub">Clasifica cada mensaje como positivo o dañino. ¡Entrena tu empatía y defiende a quienes lo necesitan!</p>
+  <div id="g2-container" style="max-width:720px;margin:0 auto;width:100%"></div>
+</div>
+
+
+<footer>Prevenir el Bullying · Proyecto educativo para jóvenes y familias · Hecho con 💙</footer>
+
+<!-- MODAL OVERLAY -->
+<div class="modal-overlay" id="detailOverlay" onclick="overlayClick(event)">
+  <div class="modal-card" id="detailCard">
+    <div class="modal-header" id="modalHeader">
+      <div class="modal-deco blob1"></div>
+      <div class="modal-deco blob2"></div>
+      <button class="modal-back" onclick="closeModal()">
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M10 3L5 8L10 13" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        Volver a los tipos
+      </button>
+      <div class="modal-title" id="modalTitle"></div>
+      <div class="modal-sub" id="modalSub"></div>
+    </div>
+    <div class="modal-body" id="modalBody"></div>
+  </div>
+</div>
+
+<script>
+// ── BUBBLES ──────────────────────────────────────────
+const bubblesEl = document.getElementById('bubbles');
+for(let i=0;i<14;i++){
+  const b = document.createElement('div');
+  b.className='bubble';
+  const size = 20+Math.random()*60;
+  b.style.cssText=`width:${size}px;height:${size}px;left:${Math.random()*100}%;animation-duration:${6+Math.random()*8}s;animation-delay:${Math.random()*6}s`;
+  bubblesEl.appendChild(b);
+}
+
+// ── TABS ─────────────────────────────────────────────
+function showTab(id){
+  document.querySelectorAll('.section').forEach(s=>s.classList.remove('active'));
+  document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+  const tabs=['tipos','senales','como-actuar','cyber','denunciar','encuesta','resultados','chat','juego1','juego2'];
+  const idx = tabs.indexOf(id);
+  if(idx>=0) document.querySelectorAll('.tab')[idx].classList.add('active');
+  window.scrollTo({top:document.querySelector('.nav-tabs').offsetTop-10,behavior:'smooth'});
+  if(id==='resultados') loadResults();
+  if(id==='juego1') initGame1();
+  if(id==='juego2') initGame2();
+}
+function goToChat(){showTab('chat')}
+function goToInfo(){showTab('tipos')}
+
+// ── TYPE DETAIL MODAL ────────────────────────────────
+const typeData = {
+  fisico:{
+    gradient:'linear-gradient(135deg,#4a6ee0,#7b5ea7)',
+    title:'🤜 Bullying Físico',
+    sub:'La forma más visible — pero sus heridas van mucho más allá de lo que se ve a simple vista.',
+    cols:[
+      {icon:'⚠️',title:'Cómo se manifiesta',items:['Golpes, patadas, pellizcos o mordiscos repetidos','Empujones en pasillos, baños o recreos sin testigos adultos','Robo o destrucción deliberada de pertenencias (móvil, mochila, ropa)','Encerrar o bloquear físicamente el paso a la víctima','Obligar a hacer cosas bajo amenaza de daño físico','Escupir o lanzar objetos como forma de humillación pública']},
+      {icon:'💔',title:'Consecuencias en la víctima',items:['Miedo constante a ir a la escuela o tomar ciertas rutas','Lesiones físicas visibles: moratones, rasguños, cortes que no se explican','Ansiedad generalizada y estrés crónico que afecta el sueño y la concentración','Pérdida severa de confianza en sí mismo y en las personas de su entorno','Retraimiento social progresivo para evitar situaciones de riesgo','Síntomas psicosomáticos: dolores de barriga o de cabeza sin causa médica']},
+      {icon:'✅',title:'Qué puedes hacer ahora',items:['Aléjate sin responder con violencia — evitas escalar y no das más material al agresor','Cuéntaselo a un adulto o profesor HOY, no esperes a que "se arregle solo"','Anota o fotografía las lesiones con fecha como evidencia visual','Si hay objetos dañados, guárdalos o fótografíalos antes de tirarlos','Habla con el orientador: el colegio tiene obligación legal de abrir protocolo','Si hay lesiones, acude al médico — el informe médico es una prueba clave para actuar','Evita ir solo por zonas de riesgo: muévete siempre con compañeros de confianza']}
+    ],
+    stats:[{num:'30%',lbl:'de todos los casos de bullying incluye agresión física'},{num:'Primaria',lbl:'etapa donde es más frecuente (6–12 años)'},{num:'3×',lbl:'más visible y reportado que el verbal o social'}]
+  },
+  verbal:{
+    gradient:'linear-gradient(135deg,#e05a8a,#f4845f)',
+    title:'💬 Bullying Verbal',
+    sub:'Las palabras dejan cicatrices invisibles — a veces más profundas y duraderas que las físicas.',
+    cols:[
+      {icon:'⚠️',title:'Cómo se manifiesta',items:['Insultos directos, apodos crueles o motes ofensivos usados de forma constante','Burlas sobre la apariencia, peso, voz, ropa, familia u origen','Amenazas verbales: "te vas a enterar", "te voy a hacer la vida imposible"','Humillaciones públicas frente al grupo para generar vergüenza social','Imitaciones burlescas o ridiculizaciones repetidas delante de otros','Comentarios que atacan la identidad: orientación, religión, raza o discapacidad']},
+      {icon:'💔',title:'Consecuencias en la víctima',items:['Baja autoestima severa: empieza a creer que los insultos son verdad sobre sí misma','Depresión y tristeza persistente que no mejora con el tiempo','Miedo a hablar en clase o en público por temor al ridículo y la burla','Rechazo progresivo a socializar con cualquier compañero','Interiorización de los insultos como parte permanente de su identidad','Puede derivar en trastornos alimentarios si los ataques se centran en el cuerpo']},
+      {icon:'✅',title:'Qué puedes hacer ahora',items:['No reacciones — el agresor busca precisamente esa respuesta emocional y visible','Practica respuestas neutras: "lo que digas" sin alterarte les quita el poder','Cuéntaselo a un adulto o tutor cuanto antes, no tienes que soportarlo en silencio','Recuerda constantemente: las palabras del agresor son su problema, no una verdad sobre ti','Rodéate de personas que te valoren y refuercen tu autoestima genuina','Si el daño emocional es profundo, un psicólogo puede ayudarte a reconstruir tu confianza']}
+    ],
+    stats:[{num:'77%',lbl:'de todas las víctimas experimenta bullying verbal'},{num:'#1',lbl:'tipo más frecuente en todas las edades escolares'},{num:'Niñas',lbl:'especialmente afectadas por motes relacionados con imagen'}]
+  },
+  social:{
+    gradient:'linear-gradient(135deg,#2dbfa0,#4a6ee0)',
+    title:'👥 Bullying Social',
+    sub:'El más silencioso y difícil de detectar — pero uno de los que más daño emocional permanente causa.',
+    cols:[
+      {icon:'⚠️',title:'Cómo se manifiesta',items:['Excluir sistemáticamente de juegos, grupos y actividades del aula','Organizar a otros compañeros para que rechacen o ignoren a alguien','Difundir rumores, mentiras o secretos para dañar la reputación social','Ignorar deliberadamente, "hacerse el sordo" o no responder cuando habla','Cambiar de sitio o salir del espacio cuando llega la víctima','Usar lenguaje no verbal: miradas de desprecio, risas o gestos para humillar sin palabras']},
+      {icon:'💔',title:'Consecuencias en la víctima',items:['Soledad profunda y sensación duradera de no pertenecer a ningún lugar','Vergüenza intensa y confusión: no entiende por qué le rechazan sin motivo aparente','Pérdida progresiva de habilidades sociales por falta de práctica e interacción','Desconfianza hacia las amistades que puede persistir hasta la vida adulta','Ansiedad social crónica que puede convertirse en fobia social severa','Afecta especialmente la formación de la identidad durante la adolescencia']},
+      {icon:'✅',title:'Qué puedes hacer ahora',items:['Busca grupos de interés fuera del aula: deporte, arte, voluntariado o actividades externas','Cuéntaselo al orientador escolar — puede mediar, trabajar la convivencia del grupo y actuar','No te aísles completamente: la conexión social, aunque difícil, es parte esencial de la recuperación','Habla con tus padres con todo detalle: necesitan la información completa para ayudarte bien','Recuerda que el rechazo habla todo del agresor y absolutamente nada de ti como persona','Un psicólogo especializado puede ayudarte a reconstruir tu seguridad social y autoestima']}
+    ],
+    stats:[{num:'55%',lbl:'de adolescentes lo ha vivido alguna vez'},{num:'Invisible',lbl:'difícil de detectar por padres y profesores'},{num:'+Alto',lbl:'en chicas de 12–15 años por dinámica de grupos'}]
+  },
+  cyber2:{
+    gradient:'linear-gradient(135deg,#f7a948,#f4845f)',
+    title:'📱 Ciberbullying',
+    sub:'No se apaga cuando llegas a casa — puede seguirte las 24 horas del día, los 7 días de la semana.',
+    cols:[
+      {icon:'⚠️',title:'Cómo se manifiesta',items:['Mensajes hirientes, insultos o amenazas por WhatsApp, Telegram o mensajes directos','Publicar fotos o videos humillantes sin permiso en redes sociales o grupos','Exclusión deliberada de grupos de WhatsApp, Discord u otras plataformas','Crear perfiles falsos suplantando a la víctima para dañar su imagen pública','Difundir rumores o mentiras a través de stories, reels o publicaciones virales','Revelar información privada o íntima sin consentimiento: outing o sextorsión']},
+      {icon:'💔',title:'Por qué es especialmente dañino',items:['No hay "escape": el acoso llega al dormitorio a cualquier hora del día o la noche','Humillación masiva: puede verlo cientos o miles de personas en cuestión de segundos','Ansiedad extrema ante cada notificación — el móvil se vuelve una fuente de miedo constante','El contenido puede quedar online para siempre incluso después de denunciarlo y borrarlo','Daño permanente a la reputación que afecta vida social, escolar y oportunidades futuras','Aislamiento tecnológico que aumenta el aislamiento social: miedo a cualquier red']},
+      {icon:'✅',title:'Qué debes hacer paso a paso',items:['No respondas nunca — guarda primero capturas de TODO el contenido como evidencia','Bloquea al agresor en absolutamente todas las plataformas sin excepción','Reporta el contenido pulsando "Denunciar" en cada red social afectada','Cuéntaselo hoy a un adulto de confianza — no cargues esto solo ni un día más','Si hay fotos íntimas: es delito en casi todos los países, denuncia con las pruebas','Desconéctate temporalmente si lo necesitas — tu salud mental es más importante que cualquier red']}
+    ],
+    stats:[{num:'40%',lbl:'del bullying actual ocurre en entornos digitales'},{num:'70%',lbl:'de víctimas no lo cuenta a sus padres'},{num:'24/7',lbl:'sin descanso posible — el agresor llega hasta casa'}]
+  }
+};
+
+function toggleDetail(id){
+  const d = typeData[id];
+  if(!d) return;
+  const header = document.getElementById('modalHeader');
+  header.style.background = d.gradient;
+  document.getElementById('modalTitle').textContent = d.title;
+  document.getElementById('modalSub').textContent = d.sub;
+  const body = document.getElementById('modalBody');
+  body.style.background = d.gradient.replace('135deg','160deg').replace(')',', #1a1a2e 120%)');
+
+  const colsHTML = d.cols.map(c=>`
+    <div class="modal-box">
+      <h4>${c.icon} ${c.title}</h4>
+      <ul>${c.items.map(i=>`<li><span class="bullet">›</span>${i}</li>`).join('')}</ul>
+    </div>`).join('');
+
+  const statsHTML = d.stats.map(s=>`
+    <div class="modal-stat">
+      <div class="modal-stat-num">${s.num}</div>
+      <div class="modal-stat-lbl">${s.lbl}</div>
+    </div>`).join('');
+
+  body.innerHTML = `<div class="modal-cols">${colsHTML}</div><div class="modal-stats">${statsHTML}</div>`;
+
+  const overlay = document.getElementById('detailOverlay');
+  overlay.style.display='flex';
+  requestAnimationFrame(()=>requestAnimationFrame(()=>overlay.classList.add('visible')));
+  document.body.style.overflow='hidden';
+}
+
+function closeModal(){
+  const overlay = document.getElementById('detailOverlay');
+  overlay.classList.remove('visible');
+  setTimeout(()=>{overlay.style.display='none';document.body.style.overflow='';},350);
+}
+
+function overlayClick(e){
+  if(e.target===document.getElementById('detailOverlay')) closeModal();
+}
+
+document.addEventListener('keydown',e=>{if(e.key==='Escape') closeModal()});
+
+// keep old closeDetail for any stale refs
+function closeDetail(id){closeModal()}
+
+// ── ACCORDION ────────────────────────────────────────
+function toggleAcc(header){
+  const body = header.nextElementSibling;
+  const arrow = header.querySelector('.acc-arrow');
+  const isOpen = body.classList.contains('open');
+  body.classList.toggle('open',!isOpen);
+  arrow.style.transform = isOpen ? 'rotate(0deg)' : 'rotate(180deg)';
+}
+
+// ── COMPANION SETUP ──────────────────────────────────
+let companionName = '';
+let companionEmoji = '🤝';
+let conversationHistory = [];
+
+function pickEmoji(btn, emoji){
+  document.querySelectorAll('.emoji-btn').forEach(b=>b.classList.remove('active'));
+  btn.classList.add('active');
+  companionEmoji = emoji;
+  document.getElementById('setupPreview').textContent = emoji;
+  document.getElementById('setupPreview').style.transform='scale(1.3)';
+  setTimeout(()=>document.getElementById('setupPreview').style.transform='',300);
+}
+
+function updatePreviewName(val){
+  const counter = document.getElementById('nameCounter');
+  counter.textContent = val.length + ' / 20';
+  if(val.length > 16) counter.style.color='var(--pink)';
+  else counter.style.color='var(--muted)';
+}
+
+function suggestName(name){
+  const input = document.getElementById('companionNameInput');
+  input.value = name;
+  updatePreviewName(name);
+  input.focus();
+}
+
+function startChat(){
+  const raw = document.getElementById('companionNameInput').value.trim();
+  companionName = raw || 'Amigo';
+  conversationHistory = [];
+
+  // update UI
+  document.getElementById('chatAvatar').textContent = companionEmoji;
+  document.getElementById('chatName').textContent = companionName;
+  document.getElementById('chatStatus').textContent = 'Tu compañero · Aquí para escucharte';
+
+  // switch screens with animation
+  const setup = document.getElementById('setupScreen');
+  setup.style.opacity='0';setup.style.transform='translateY(-10px)';setup.style.transition='all .3s';
+  setTimeout(()=>{
+    setup.style.display='none';
+    const chat = document.getElementById('chatScreen');
+    chat.style.display='block';
+    chat.style.opacity='0';chat.style.transform='translateY(10px)';
+    requestAnimationFrame(()=>{
+      chat.style.transition='all .35s ease';
+      chat.style.opacity='1';chat.style.transform='translateY(0)';
+    });
+  },300);
+
+  // clear and greet
+  const msgs = document.getElementById('msgs');
+  msgs.innerHTML='';
+  addMsg(`¡Hola! Soy ${companionName} ${companionEmoji} Me alegra que estés aquí. Puedes contarme lo que está pasando — te escucho sin juzgarte. 💙`, 'bot');
+}
+
+function resetCompanion(){
+  const chat = document.getElementById('chatScreen');
+  chat.style.opacity='0';chat.style.transform='translateY(-10px)';chat.style.transition='all .3s';
+  setTimeout(()=>{
+    chat.style.display='none';
+    document.getElementById('companionNameInput').value='';
+    updatePreviewName('');
+    const setup = document.getElementById('setupScreen');
+    setup.style.display='block';setup.style.opacity='0';setup.style.transform='translateY(10px)';
+    setup.style.transition='all .35s ease';
+    requestAnimationFrame(()=>{setup.style.opacity='1';setup.style.transform='translateY(0)'});
+  },280);
+}
+
+// ── CHAT ─────────────────────────────────────────────
+function addMsg(text, type){
+  const msgs = document.getElementById('msgs');
+  const d = document.createElement('div');
+  d.className = 'msg ' + type;
+  d.textContent = text;
+  msgs.appendChild(d);
+  msgs.scrollTop = msgs.scrollHeight;
+  return d;
+}
+
+function addTyping(){
+  const msgs = document.getElementById('msgs');
+  const d = document.createElement('div');
+  d.className = 'msg bot';
+  d.innerHTML = '<div class="typing-dots"><span></span><span></span><span></span></div>';
+  msgs.appendChild(d);
+  msgs.scrollTop = msgs.scrollHeight;
+  return d;
+}
+
+// Respuestas de emergencia sin API
+const fallbackResponses = [
+  `Estoy aquí contigo 💙 Lo que sientes es completamente válido. Recuerda que pedir ayuda es un acto de valentía — habla hoy con un adulto de confianza: un familiar, profesor u orientador.`,
+  `Te escucho 🤝 Nadie merece pasar por eso. Mi consejo más importante: cuéntaselo a alguien hoy. No tienes que enfrentarlo solo.`,
+  `Entiendo que esto es difícil 💛 Lo primero es saber que no es tu culpa. Busca a un adulto de confianza y cuéntale exactamente lo que me acabas de decir a mí.`,
+  `Gracias por contármelo 🌟 Eso ya es un paso enorme. Si el bullying es físico, documenta todo. Si es online, guarda capturas. Y habla con tu orientador escolar cuanto antes.`,
+  `Estoy aquí para ti 💜 Lo que describes es bullying y merece atención. Llama a alguien hoy: en España 116 111, en México 55 5259-8121, o habla con quien más confianza le tengas.`
+];
+let fallbackIdx = 0;
+
+async function callAI(text){
+  // add to history
+  conversationHistory.push({role:'user', content: text});
+  // keep last 10 turns for context
+  const recentHistory = conversationHistory.slice(-10);
+
+  const res = await fetch('https://api.anthropic.com/v1/messages',{
+    method:'POST',
+    headers:{'Content-Type':'application/json'},
+    body: JSON.stringify({
+      model:'claude-sonnet-4-20250514',
+      max_tokens:600,
+      system:`Eres "${companionName}", el compañero de apoyo personal de este usuario en la plataforma "Prevenir el Bullying".
+
+Tu identidad:
+- Tu nombre es ${companionName} y tu personalidad es cálida, cercana y empática.
+- Eres el amigo/a de confianza de esta persona, no un asistente formal.
+- Hablas en primera persona como compañero, no como experto distante.
+
+Cómo respondes:
+- Empiezas siempre validando el sentimiento con empatía real y genuina.
+- Usas lenguaje cercano y natural, como un amigo de verdad hablaría.
+- Máximo 4 oraciones. Conciso pero cálido.
+- Usas 1-2 emojis que encajen de forma natural.
+- Das siempre al menos un consejo concreto y realizable.
+- Nunca culpas a la víctima ni minimizas lo que siente.
+- Si detectas riesgo físico o ideas de autolesión, recomiendas URGENTEMENTE buscar a un adulto o llamar a una línea de crisis.
+- Jamás sugieres venganza ni escalar el conflicto con violencia.
+- Recuerdas que pedir ayuda es valiente, no débil.
+- Siempre en español.`,
+      messages: recentHistory
+    })
+  });
+
+  if(!res.ok) throw new Error('API error ' + res.status);
+  const data = await res.json();
+  const reply = data.content.map(b=>b.text||'').join('');
+  // save assistant response to history
+  conversationHistory.push({role:'assistant', content: reply});
+  return reply;
+}
+
+async function send(){
+  const inp = document.getElementById('inp');
+  const sendBtn = document.getElementById('sendBtn');
+  const text = inp.value.trim();
+  if(!text) return;
+  inp.value = '';
+  sendBtn.disabled = true;
+  addMsg(text, 'user');
+  const typing = addTyping();
+  try{
+    const reply = await callAI(text);
+    typing.remove();
+    addMsg(reply, 'bot');
+  } catch(e){
+    typing.remove();
+    // use rotating fallback messages so it feels personal
+    const fb = fallbackResponses[fallbackIdx % fallbackResponses.length];
+    fallbackIdx++;
+    addMsg(fb, 'bot');
+  }
+  sendBtn.disabled = false;
+  document.getElementById('inp').focus();
+}
+
+function ask(text){
+  document.getElementById('inp').value = text;
+  send();
+}
+
+// ── SURVEY ───────────────────────────────────────────
+// Emoji options clickable
+document.querySelectorAll('.sq-opt--emoji').forEach(opt=>{
+  opt.addEventListener('click',()=>{
+    const radio = opt.querySelector('input[type=radio]');
+    if(radio) radio.checked = true;
+    opt.closest('.sq-options').querySelectorAll('.sq-opt--emoji').forEach(o=>o.classList.remove('checked'));
+    opt.classList.add('checked');
+  });
+});
+
+// Char counter
+const sqTa = document.getElementById('sqTextarea');
+if(sqTa){
+  sqTa.addEventListener('input',()=>{
+    document.getElementById('sqCharCount').textContent = sqTa.value.length;
+  });
+}
+
+const q1Labels = {victima:'Me está pasando a mí', conocido:'Le pasa a alguien que conozco', testigo:'Lo he visto pero no me afecta', informacion:'Solo quiero informarme'};
+const q3Labels = {dias:'Unos días', semanas:'Varias semanas', meses:'Varios meses', anio:'Más de un año', na:'No aplica'};
+const q4Labels = {muy_mal:'😢 Muy mal', asustado:'😨 Asustado/a', confundido:'😕 Confundido/a', enojado:'😠 Enojado/a', bien:'🙂 Bien'};
+const q5Labels = {si:'Sí, lo sabe alguien', miedo:'No, tengo miedo', nocreer:'No, no me creerán', na:'No aplica'};
+const q2Labels = {fisico:'🤜 Físico', verbal:'💬 Verbal', social:'👥 Social', cyber:'📱 Ciberbullying', nose:'❓ No sé'};
+
+async function submitSurvey(){
+  const q1 = document.querySelector('input[name="q1"]:checked');
+  if(!q1){ alert('Por favor responde al menos la primera pregunta 💙'); return; }
+
+  const tipos = [...document.querySelectorAll('input[name="q2"]:checked')].map(i=>i.value);
+  const q3 = document.querySelector('input[name="q3"]:checked')?.value || 'na';
+  const q4 = document.querySelector('input[name="q4"]:checked')?.value || '';
+  const q5 = document.querySelector('input[name="q5"]:checked')?.value || 'na';
+  const q6 = sqTa ? sqTa.value.trim() : '';
+
+  const entry = {
+    id: Date.now(),
+    fecha: new Date().toLocaleString('es-ES',{day:'2-digit',month:'2-digit',year:'numeric',hour:'2-digit',minute:'2-digit'}),
+    situacion: q1.value,
+    tipos,
+    duracion: q3,
+    sentimiento: q4,
+    adulto: q5,
+    mensaje: q6
+  };
+
+  // Save to persistent storage (shared so results tab shows all users)
+  try {
+    const existing = await window.storage.get('encuestas-todas', true).catch(()=>null);
+    const lista = existing ? JSON.parse(existing.value) : [];
+    lista.push(entry);
+    await window.storage.set('encuestas-todas', JSON.stringify(lista), true);
+  } catch(e) {
+    // fallback: save in-memory only
+    window._surveyFallback = window._surveyFallback || [];
+    window._surveyFallback.push(entry);
+  }
+
+  // Personalised response
+  const feelingMap = {
+    muy_mal:    {icon:'😢', phrase:'Entendemos que lo estás pasando muy mal.'},
+    asustado:   {icon:'😨', phrase:'Es normal sentir miedo en esta situación.'},
+    confundido: {icon:'😕', phrase:'No saber qué está pasando exactamente es muy difícil.'},
+    enojado:    {icon:'😠', phrase:'Sentir rabia ante algo injusto es completamente válido.'},
+    bien:       {icon:'🙂', phrase:'Nos alegra que estés bien. Seguir informándose es muy importante.'}
+  };
+  const feeling = feelingMap[q4] || {icon:'💙', phrase:''};
+
+  let icon = feeling.icon, title = 'Gracias por compartir cómo estás', msg = '';
+  if(q1.value==='victima'){
+    title = 'Eres muy valiente por contarlo';
+    msg = `${feeling.phrase} Lo que te está pasando no es tu culpa y merece atención. `;
+    msg += (q5==='miedo'||q5==='nocreer') ? 'Sabemos que da miedo contarlo — puedes empezar hablando con tu compañero de apoyo en la pestaña 💬 Apoyo.' : 'Si ya lo contaste, vas muy bien. Sigue pidiendo seguimiento.';
+  } else if(q1.value==='conocido'){
+    title = 'Eres un buen amigo/a por preocuparte';
+    msg = `${feeling.phrase} Escúchale sin juzgar y anímale a hablar con un adulto. Tú puedes ser el puente que necesita.`;
+  } else if(q1.value==='testigo'){
+    title = 'Los testigos tienen mucho poder';
+    msg = 'Los testigos que intervienen detienen el bullying en el 57% de los casos. Aunque sea un "¿estás bien?" después — eso cambia todo.';
+  } else {
+    title = 'Gracias por querer aprender';
+    msg = 'Conocer el problema es el primer paso para prevenirlo. Explora las otras secciones para saber más.';
+  }
+
+  document.getElementById('surveyForm').style.display = 'none';
+  const result = document.getElementById('surveyResult');
+  result.style.display = 'block';
+  result.innerHTML = `
+    <div class="survey-result-icon">${icon}</div>
+    <h3>${title}</h3>
+    <p>Tu encuesta fue guardada de forma completamente anónima. ✅</p>
+    <div class="survey-result-msg">💬 ${msg}</div>
+    <button class="survey-reset" onclick="resetSurvey()">Responder de nuevo</button>
+  `;
+}
+
+function resetSurvey(){
+  document.getElementById('surveyResult').style.display = 'none';
+  document.getElementById('surveyForm').style.display = 'block';
+  document.querySelectorAll('#surveyForm input').forEach(i=>{ i.checked=false; });
+  if(sqTa){ sqTa.value=''; document.getElementById('sqCharCount').textContent='0'; }
+  document.querySelectorAll('.sq-opt--emoji').forEach(o=>o.classList.remove('checked'));
+}
+
+// ── RESULTS PANEL ─────────────────────────────────────
+async function loadResults(){
+  const panel = document.getElementById('resultsPanel');
+  panel.innerHTML = '<div class="results-loading">Cargando respuestas...</div>';
+
+  let lista = [];
+  try {
+    const data = await window.storage.get('encuestas-todas', true).catch(()=>null);
+    lista = data ? JSON.parse(data.value) : [];
+  } catch(e) {
+    lista = window._surveyFallback || [];
+  }
+
+  if(!lista.length){
+    panel.innerHTML = `<div class="results-empty"><div class="re-icon">📋</div><p>Todavía no hay encuestas enviadas.<br>Sé el primero en compartir cómo estás.</p></div>`;
+    return;
+  }
+
+  // Build summary stats
+  const total = lista.length;
+  const victimas = lista.filter(e=>e.situacion==='victima').length;
+  const sentimientos = lista.filter(e=>e.sentimiento==='muy_mal'||e.sentimiento==='asustado').length;
+  const sinContar = lista.filter(e=>e.adulto==='miedo'||e.adulto==='nocreer').length;
+
+  const pillarColor = s => {
+    if(s==='victima') return 'danger';
+    if(s==='conocido') return 'warning';
+    if(s==='testigo') return 'neutral';
+    return 'success';
+  };
+  const feelEmoji = v => ({muy_mal:'😢',asustado:'😨',confundido:'😕',enojado:'😠',bien:'🙂'})[v]||'💙';
+
+  let html = `
+  <div class="results-actions">
+    <span class="res-count-badge">${total} respuesta${total!==1?'s':''} recibida${total!==1?'s':''}</span>
+    <button class="res-clear-btn" onclick="clearResults()">🗑 Borrar todo</button>
+  </div>
+  <div class="results-summary">
+    <div class="rs-stat"><div class="rs-num" style="color:var(--blue)">${total}</div><div class="rs-lbl">Total respuestas</div></div>
+    <div class="rs-stat"><div class="rs-num" style="color:var(--pink)">${victimas}</div><div class="rs-lbl">Víctimas directas</div></div>
+    <div class="rs-stat"><div class="rs-num" style="color:var(--orange)">${sentimientos}</div><div class="rs-lbl">Se sienten muy mal</div></div>
+    <div class="rs-stat"><div class="rs-num" style="color:var(--purple)">${sinContar}</div><div class="rs-lbl">No se atreven a contarlo</div></div>
+  </div>
+  <div class="results-cards">`;
+
+  [...lista].reverse().forEach((e,i)=>{
+    const tiposText = (e.tipos||[]).map(t=>q2Labels[t]||t).join(' · ') || '—';
+    const feel = feelEmoji(e.sentimiento);
+    html += `
+    <div class="res-entry" style="animation-delay:${i*0.04}s">
+      <div class="res-entry-top">
+        <span class="res-entry-id">Respuesta #${lista.length - i}</span>
+        <span class="res-entry-date">🕐 ${e.fecha}</span>
+      </div>
+      <div class="res-pills">
+        <span class="res-pill ${pillarColor(e.situacion)}">${q1Labels[e.situacion]||e.situacion}</span>
+        ${e.sentimiento?`<span class="res-pill">${feel} ${q4Labels[e.sentimiento]||e.sentimiento}</span>`:''}
+        ${e.adulto&&e.adulto!=='na'?`<span class="res-pill ${e.adulto==='si'?'success':'danger'}">${q5Labels[e.adulto]||e.adulto}</span>`:''}
+        <span class="res-pill neutral">${q3Labels[e.duracion]||e.duracion}</span>
+      </div>
+      <div class="res-pills" style="margin-top:2px">${(e.tipos||[]).map(t=>`<span class="res-pill neutral">${q2Labels[t]||t}</span>`).join('')||'<span class="res-pill neutral">Tipo no indicado</span>'}</div>
+      ${e.mensaje?`<div class="res-msg">"${e.mensaje}"</div>`:''}
+    </div>`;
+  });
+
+  html += '</div>';
+  panel.innerHTML = html;
+}
+
+async function clearResults(){
+  if(!confirm('¿Seguro que quieres borrar todas las respuestas? Esta acción no se puede deshacer.')) return;
+  try{ await window.storage.set('encuestas-todas', JSON.stringify([]), true); }
+  catch(e){ window._surveyFallback = []; }
+  loadResults();
+}
+
+// ══════════════════════════════════════════════════════
+// JUEGO 1 — ¿Qué harías tú? (escenarios de decisión)
+// ══════════════════════════════════════════════════════
+const g1Scenarios = [
+  {
+    id:1,
+    scene:'🏫',
+    situation:'Estás en el recreo y ves que un grupo de compañeros rodea a Sofía, le quitan su mochila y se ríen de ella. Sofía está llorando.',
+    options:[
+      {text:'Me uno a las risas para no quedar mal con el grupo',correct:false,feedback:'Reírse o ignorar le da más poder al agresor. Sofía necesita que alguien la apoye.'},
+      {text:'Me acerco a Sofía después y le pregunto cómo está',correct:true,feedback:'¡Muy bien! Apoyar a la víctima después es un acto de empatía que puede marcar la diferencia.'},
+      {text:'Aviso a un profesor inmediatamente',correct:true,feedback:'¡Excelente! Avisar a un adulto es una de las acciones más efectivas para detener el bullying.'},
+      {text:'Ignoro la situación porque no es mi problema',correct:false,feedback:'El silencio de los testigos mantiene el bullying. Los testigos que actúan detienen el acoso en el 57% de los casos.'},
+    ],
+    tip:'Los testigos tienen más poder del que creen. Una simple acción puede cambiar todo.'
+  },
+  {
+    id:2,
+    scene:'📱',
+    situation:'Tu compañero Marcos te manda un screenshot de un grupo de WhatsApp donde varios compañeros están insultando y burlándose de Ana con memes y apodos.',
+    options:[
+      {text:'Reenvío el screenshot a más personas, es gracioso',correct:false,feedback:'Compartir contenido dañino convierte a la víctima en cómplice del acoso. Eso es ciberbullying.'},
+      {text:'Hablo directamente con Ana en privado y le cuento lo que vi',correct:true,feedback:'¡Muy bien! Informar a la víctima y ofrecerle apoyo es un acto de valentía y amistad real.'},
+      {text:'Guardo el screenshot como evidencia y aviso a un adulto',correct:true,feedback:'¡Perfecto! Las pruebas son fundamentales. Avisar a un adulto con evidencias acelera la solución.'},
+      {text:'Me salgo del grupo pero no digo nada a nadie',correct:false,feedback:'Salir del grupo está bien, pero quedarte callado deja a Ana sola. Dar un paso más puede protegerla.'},
+    ],
+    tip:'El ciberbullying deja evidencia digital. Guardar pruebas y avisar a adultos es clave.'
+  },
+  {
+    id:3,
+    scene:'🎒',
+    situation:'Tu amigo Diego lleva semanas sin querer ir al colegio, está triste, y ayer llegó con el estuche roto. Cuando le preguntas qué pasa, dice "nada, déjame".',
+    options:[
+      {text:'Lo dejo en paz, si no quiere hablar es su decisión',correct:false,feedback:'El silencio puede ser una señal de que tiene miedo o vergüenza. Insistir con cariño es importante.'},
+      {text:'Le digo que estoy ahí para él sin presionarle, y le pregunto otra vez en otro momento tranquilo',correct:true,feedback:'¡Genial! Crear un espacio seguro sin presión es la mejor forma de que alguien se abra contigo.'},
+      {text:'Comento con tus padres o un profesor lo que has notado, con discreción',correct:true,feedback:'¡Excelente! Alertar a un adulto de confianza puede activar la ayuda que Diego necesita y no pide.'},
+      {text:'Difundo que Diego tiene problemas para que otros estén al tanto',correct:false,feedback:'Hablar de los problemas de alguien sin su permiso puede empeorar la situación y romper su confianza.'},
+    ],
+    tip:'Reconocer señales de bullying en amigos y actuar con discreción puede salvarles.'
+  },
+  {
+    id:4,
+    scene:'💬',
+    situation:'Eres víctima de insultos constantes de un compañero en clase. Tu profesor no se da cuenta. Hoy te ha escrito mensajes ofensivos por Instagram también.',
+    options:[
+      {text:'Respondo con insultos para defenderme',correct:false,feedback:'Responder con agresividad casi siempre escala el conflicto y puede hacerte parecer el agresor.'},
+      {text:'Bloqueo al agresor en Instagram y guardo capturas como prueba',correct:true,feedback:'¡Muy bien! Bloquear y documentar es el primer paso correcto ante el ciberbullying.'},
+      {text:'Se lo cuento a mis padres o tutor con todas las pruebas',correct:true,feedback:'¡Perfecto! Un adulto de confianza puede acompañarte y actuar de forma efectiva con el colegio.'},
+      {text:'Borro los mensajes para que nadie los vea y me olvido',correct:false,feedback:'Borrar evidencias elimina tus pruebas. Siempre guarda capturas antes de bloquear o borrar nada.'},
+    ],
+    tip:'Ante el ciberbullying: captura, bloquea, y cuéntaselo a alguien de confianza hoy.'
+  },
+  {
+    id:5,
+    scene:'🏃',
+    situation:'En educación física, el equipo siempre deja fuera a Laura porque "juega mal". Cada clase termina llorando sola en un rincón mientras todos se ríen.',
+    options:[
+      {text:'Elijo a Laura para mi equipo y le digo que importa estar juntos',correct:true,feedback:'¡Brillante! Incluir activamente a quien es excluido es un acto de empatía muy poderoso.'},
+      {text:'Hablo con el profesor de educación física para que intervenga',correct:true,feedback:'¡Muy bien! El profesorado puede cambiar la dinámica del grupo si sabe lo que está pasando.'},
+      {text:'Pienso que Laura ya se acostumbrará',correct:false,feedback:'Nadie debería "acostumbrarse" a ser excluido. La exclusión repetida es bullying social y deja cicatrices.'},
+      {text:'Digo en voz alta que eso no es justo delante del grupo',correct:true,feedback:'¡Excelente! Romper el silencio públicamente sin agresividad puede cambiar la actitud de todo el grupo.'},
+    ],
+    tip:'El bullying social (exclusión) es uno de los más dañinos aunque no sea visible.'
+  },
+  {
+    id:6,
+    scene:'🖥️',
+    situation:'Ves en TikTok un video que alguien de tu colegio publicó burlándose de un alumno con discapacidad. Ya tiene cientos de visualizaciones.',
+    options:[
+      {text:'Lo comparto porque tiene mucha gracia y quiero que lo vean',correct:false,feedback:'Compartir contenido humillante multiplica el daño. Cada compartir hace la humillación más grande.'},
+      {text:'Denuncio el video en TikTok usando el botón de reportar',correct:true,feedback:'¡Perfecto! Reportar contenido dañino en redes sociales es una acción concreta y muy efectiva.'},
+      {text:'Aviso al alumno afectado y a un adulto del colegio con el enlace',correct:true,feedback:'¡Muy bien! La víctima y los adultos necesitan saber para poder actuar rápido antes de que se viralice más.'},
+      {text:'Lo ignoro porque no conozco personalmente al alumno',correct:false,feedback:'No hace falta conocer a alguien para defenderle. La empatía no tiene límites de amistad.'},
+    ],
+    tip:'En redes sociales, reportar y avisar es tan importante como actuar en persona.'
+  },
+];
+
+let g1State = { current:0, score:0, answered:false, totalCorrect:0, totalQuestions:g1Scenarios.length };
+let g1Initialized = false;
+
+function initGame1(){
+  if(g1Initialized) return;
+  g1Initialized = true;
+  g1State = { current:0, score:0, answered:false, totalCorrect:0 };
+  renderG1();
+}
+
+function renderG1(){
+  const c = document.getElementById('g1-container');
+  const sc = g1Scenarios[g1State.current];
+  const progress = ((g1State.current) / g1Scenarios.length) * 100;
+
+  c.innerHTML = `
+  <div style="margin-bottom:18px">
+    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px">
+      <span style="font-size:13px;font-weight:700;color:#b8b5d8">Situación ${g1State.current+1} de ${g1Scenarios.length}</span>
+      <span style="font-size:13px;font-weight:700;color:#ffd700">⭐ ${g1State.score} puntos</span>
+    </div>
+    <div style="height:8px;background:#2a2560;border-radius:20px;overflow:hidden">
+      <div style="height:100%;width:${progress}%;background:linear-gradient(90deg,#ff6a00,#ee0979);border-radius:20px;transition:width .5s ease"></div>
+    </div>
+  </div>
+
+  <div style="background:#1e1b4b;border-radius:20px;padding:28px;border:1.5px solid rgba(255,106,0,.3);box-shadow:0 8px 32px rgba(0,0,0,.4);width:100%">
+    <div style="font-size:56px;text-align:center;margin-bottom:16px;animation:bounceIn .5s both">${sc.scene}</div>
+    <div style="background:#2a2560;border-radius:14px;padding:18px 20px;margin-bottom:24px;border-left:4px solid #ff6a00">
+      <p style="font-size:15px;color:#e8e6ff;line-height:1.7;font-weight:600">${sc.situation}</p>
+    </div>
+    <p style="font-size:13px;font-weight:800;color:#ff6a00;margin-bottom:14px;text-transform:uppercase;letter-spacing:.5px">¿Qué harías?</p>
+    <div id="g1-options" style="display:flex;flex-direction:column;gap:10px">
+      ${sc.options.map((opt,i)=>`
+        <button onclick="g1Answer(${i})" id="g1-opt-${i}" style="
+          background:#2a2560;border:1.5px solid rgba(255,255,255,.12);
+          color:#e8e6ff;padding:14px 18px;border-radius:12px;
+          font-size:14px;font-weight:600;text-align:left;cursor:pointer;
+          font-family:'Nunito',sans-serif;transition:all .2s;line-height:1.5;
+          width:100%;
+        " onmouseover="if(!document.getElementById('g1-feedback-${i}'))this.style.background='#352d80';this.style.borderColor='#ff6a00'" 
+           onmouseout="if(!document.getElementById('g1-feedback-${i}'))this.style.background='#2a2560';this.style.borderColor='rgba(255,255,255,.12)'">
+          <span style="font-weight:800;color:#ff6a00;margin-right:8px">${String.fromCharCode(65+i)}.</span>${opt.text}
+        </button>
+      `).join('')}
+    </div>
+    <div id="g1-tip-area"></div>
+  </div>
+  `;
+}
+
+function g1Answer(idx){
+  if(g1State.answered) return;
+  g1State.answered = true;
+  const sc = g1Scenarios[g1State.current];
+  const opt = sc.options[idx];
+
+  // Show feedback for all options
+  sc.options.forEach((o,i)=>{
+    const btn = document.getElementById(`g1-opt-${i}`);
+    btn.disabled = true;
+    btn.style.cursor = 'default';
+    if(o.correct){
+      btn.style.background = 'rgba(0,212,170,.2)';
+      btn.style.borderColor = '#00d4aa';
+      btn.style.color = '#fff';
+    } else if(i===idx && !o.correct){
+      btn.style.background = 'rgba(255,26,110,.2)';
+      btn.style.borderColor = '#ff1a6e';
+      btn.style.color = '#fff';
+    }
+  });
+
+  if(opt.correct) g1State.score += 10;
+
+  const icon = opt.correct ? '✅' : '❌';
+  const tipArea = document.getElementById('g1-tip-area');
+  tipArea.innerHTML = `
+    <div style="margin-top:18px;background:${opt.correct?'rgba(0,212,170,.12)':'rgba(255,26,110,.12)'};
+      border-radius:12px;padding:16px 18px;border-left:4px solid ${opt.correct?'#00d4aa':'#ff1a6e'}">
+      <p style="font-size:14px;color:#fff;font-weight:700;margin-bottom:6px">${icon} ${opt.correct?'¡Buena decisión!':'Hay una mejor opción'}</p>
+      <p style="font-size:13px;color:#ccc;line-height:1.6">${opt.feedback}</p>
+    </div>
+    <div style="margin-top:12px;background:rgba(255,215,0,.1);border-radius:12px;padding:12px 16px;border-left:4px solid #ffd700">
+      <p style="font-size:12px;color:#ffd700;font-weight:700">💡 Recuerda: ${sc.tip}</p>
+    </div>
+    <div style="text-align:center;margin-top:20px">
+      <button onclick="g1Next()" style="
+        background:linear-gradient(135deg,#ff6a00,#ee0979);
+        color:#fff;border:none;padding:14px 36px;border-radius:50px;
+        font-size:15px;font-weight:800;cursor:pointer;font-family:'Nunito',sans-serif;
+        box-shadow:0 6px 24px rgba(238,9,121,.4);transition:transform .2s;
+      " onmouseover="this.style.transform='translateY(-2px)'" onmouseout="this.style.transform=''">
+        ${g1State.current+1 < g1Scenarios.length ? 'Siguiente situación →' : '🏆 Ver resultado final'}
+      </button>
+    </div>
+  `;
+}
+
+function g1Next(){
+  if(g1State.current + 1 < g1Scenarios.length){
+    g1State.current++;
+    g1State.answered = false;
+    renderG1();
+  } else {
+    renderG1End();
+  }
+}
+
+function renderG1End(){
+  const c = document.getElementById('g1-container');
+  const pct = Math.round((g1State.score / (g1Scenarios.length * 10)) * 100);
+  let medal='🥉', msg='Sigue practicando — cada situación es una oportunidad de aprender.', color='#f4845f';
+  if(pct>=80){medal='🏆';msg='¡Eres un defensor/a del bullying! Tu empatía y valentía pueden cambiar vidas.';color='#ffd700';}
+  else if(pct>=50){medal='🥈';msg='¡Buen trabajo! Estás aprendiendo a actuar. Un poco más de práctica y serás un experto.';color='#b8b5d8';}
+
+  c.innerHTML = `
+  <div style="background:#1e1b4b;border-radius:24px;padding:40px 28px;text-align:center;border:2px solid rgba(255,215,0,.3);box-shadow:0 8px 40px rgba(0,0,0,.5);width:100%">
+    <div style="font-size:72px;margin-bottom:16px;animation:bounceIn .6s both">${medal}</div>
+    <h3 style="font-family:'Fredoka One',cursive;font-size:28px;color:#fff;margin-bottom:8px">¡Juego completado!</h3>
+    <div style="font-size:48px;font-family:'Fredoka One',cursive;color:${color};margin:12px 0">${g1State.score}<span style="font-size:20px;color:#b8b5d8"> / ${g1Scenarios.length*10} pts</span></div>
+    <div style="height:10px;background:#2a2560;border-radius:20px;overflow:hidden;margin:16px 0">
+      <div style="height:100%;width:${pct}%;background:linear-gradient(90deg,#ff6a00,#ee0979);border-radius:20px;transition:width 1s ease"></div>
+    </div>
+    <p style="font-size:15px;color:#e8e6ff;line-height:1.7;margin-bottom:24px;max-width:480px;margin-left:auto;margin-right:auto">${msg}</p>
+    <div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap">
+      <button onclick="g1Restart()" style="
+        background:linear-gradient(135deg,#ff6a00,#ee0979);
+        color:#fff;border:none;padding:14px 28px;border-radius:50px;
+        font-size:14px;font-weight:800;cursor:pointer;font-family:'Nunito',sans-serif;
+        box-shadow:0 6px 20px rgba(238,9,121,.4)">🔄 Jugar de nuevo</button>
+      <button onclick="showTab('juego2')" style="
+        background:linear-gradient(135deg,#00d4aa,#2952ff);
+        color:#fff;border:none;padding:14px 28px;border-radius:50px;
+        font-size:14px;font-weight:800;cursor:pointer;font-family:'Nunito',sans-serif;
+        box-shadow:0 6px 20px rgba(41,82,255,.4)">🕹️ Probar el otro juego</button>
+    </div>
+  </div>
+  `;
+}
+
+function g1Restart(){
+  g1State = { current:0, score:0, answered:false };
+  renderG1();
+}
+
+
+// ══════════════════════════════════════════════════════
+// JUEGO 2 — Palabras que sanan (clasifica el mensaje)
+// ══════════════════════════════════════════════════════
+const g2Cards = [
+  {text:'¿Estás bien? Si quieres hablar, aquí estoy.',type:'positivo',emoji:'💚',explain:'Ofrecer apoyo sin presión es una de las mejores formas de ayudar a alguien que sufre.'},
+  {text:'Eres un inútil, nunca haces nada bien.',type:'dañino',emoji:'🚫',explain:'Los insultos repetidos sobre la capacidad de alguien son bullying verbal que daña la autoestima.'},
+  {text:'Me parece muy valiente que lo hayas contado.',type:'positivo',emoji:'💚',explain:'Reconocer el valor de alguien al pedir ayuda refuerza su confianza y rompe el ciclo del silencio.'},
+  {text:'No te queremos en nuestro grupo, lárgate.',type:'dañino',emoji:'🚫',explain:'Excluir deliberadamente a alguien de un grupo es bullying social que causa un daño profundo.'},
+  {text:'Hoy te elijo a ti para el equipo. ¡Juguemos juntos!',type:'positivo',emoji:'💚',explain:'Incluir a quien es excluido es un acto de empatía poderoso que puede cambiar la dinámica del grupo.'},
+  {text:'Todos te odian. Nadie quiere estar contigo.',type:'dañino',emoji:'🚫',explain:'Decirle a alguien que todos le odian es una forma de manipulación cruel que puede causar daño emocional severo.'},
+  {text:'Ese apodo que te ponen no está bien. Habla conmigo si quieres.',type:'positivo',emoji:'💚',explain:'Reconocer el daño que hacen los apodos y ofrecer apoyo es un primer paso para romper el ciclo.'},
+  {text:'Si lo cuentas te arrepentirás. Nadie te va a creer.',type:'dañino',emoji:'🚫',explain:'Amenazar a alguien para que no pida ayuda es una táctica de control del agresor. Siempre es mejor hablar.'},
+  {text:'¿Puedo sentarme contigo? Pareces solo y eso no está bien.',type:'positivo',emoji:'💚',explain:'Acercarse a alguien aislado puede ser el gesto más importante del día para esa persona.'},
+  {text:'Esas fotos tuyas que subimos son muy graciosas, ¿verdad?',type:'dañino',emoji:'🚫',explain:'Publicar fotos de alguien sin su consentimiento para reírse es ciberbullying y puede ser un delito.'},
+  {text:'Tus ideas son interesantes, me alegra que las compartas.',type:'positivo',emoji:'💚',explain:'Valorar las aportaciones de los demás crea un ambiente seguro donde todos se sienten aceptados.'},
+  {text:'¿Para qué participas si siempre te equivocas?',type:'dañino',emoji:'🚫',explain:'Ridiculizar los errores de alguien en público le hace tener miedo a participar y expresarse.'},
+  {text:'Lo que te está pasando no es tu culpa. Mereces ayuda.',type:'positivo',emoji:'💚',explain:'Decirle a una víctima que no tiene la culpa es fundamental para que empiece a buscar apoyo.'},
+  {text:'Venga, chicos, mandémosle todos mensajes juntos.',type:'dañino',emoji:'🚫',explain:'Organizar a un grupo para acosar a alguien se llama mobbing o acoso grupal y es especialmente dañino.'},
+  {text:'Gracias por decirme eso. Tu apoyo significa mucho para mí.',type:'positivo',emoji:'💚',explain:'Reconocer y agradecer el apoyo fortalece los vínculos y crea una cultura de respeto mutuo.'},
+  {text:'Si te visto mañana así otra vez te voy a hacer la vida imposible.',type:'dañino',emoji:'🚫',explain:'Las amenazas sobre la apariencia física son una forma de intimidación que genera miedo constante.'},
+];
+
+let g2State = { deck:[], current:0, score:0, streak:0, total:0, finished:false };
+let g2Initialized = false;
+
+function shuffle(arr){ return [...arr].sort(()=>Math.random()-.5); }
+
+function initGame2(){
+  if(g2Initialized){ renderG2(); return; }
+  g2Initialized = true;
+  g2State = { deck: shuffle(g2Cards), current:0, score:0, streak:0, total:0, finished:false };
+  renderG2();
+}
+
+function renderG2(){
+  const c = document.getElementById('g2-container');
+  if(g2State.finished){ renderG2End(); return; }
+
+  const card = g2State.deck[g2State.current];
+  const progress = (g2State.current / g2State.deck.length)*100;
+
+  c.innerHTML = `
+  <div style="margin-bottom:18px">
+    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px">
+      <span style="font-size:13px;font-weight:700;color:#b8b5d8">Tarjeta ${g2State.current+1} de ${g2State.deck.length}</span>
+      <div style="display:flex;gap:12px;align-items:center">
+        <span style="font-size:13px;font-weight:700;color:#00d4aa">✅ ${g2State.score}</span>
+        <span style="font-size:13px;font-weight:700;color:#ff6a00">🔥 Racha: ${g2State.streak}</span>
+      </div>
+    </div>
+    <div style="height:8px;background:#2a2560;border-radius:20px;overflow:hidden">
+      <div style="height:100%;width:${progress}%;background:linear-gradient(90deg,#00d4aa,#2952ff);border-radius:20px;transition:width .4s ease"></div>
+    </div>
+  </div>
+
+  <div style="background:#1e1b4b;border-radius:22px;padding:32px 28px;border:1.5px solid rgba(0,212,170,.25);box-shadow:0 8px 32px rgba(0,0,0,.4);width:100%;text-align:center">
+    <p style="font-size:12px;font-weight:800;color:#00d4aa;text-transform:uppercase;letter-spacing:1px;margin-bottom:20px">¿Este mensaje es positivo o dañino?</p>
+
+    <div id="g2-card" style="
+      background:linear-gradient(135deg,#252060,#2a2560);
+      border-radius:18px;padding:28px 24px;
+      border:2px solid rgba(255,255,255,.1);
+      margin-bottom:28px;min-height:100px;
+      display:flex;align-items:center;justify-content:center;
+      animation:cardIn .4s ease both;
+    ">
+      <p style="font-size:18px;color:#fff;font-weight:700;line-height:1.6;font-style:italic">"${card.text}"</p>
+    </div>
+
+    <div id="g2-feedback"></div>
+
+    <div id="g2-btns" style="display:flex;gap:14px;justify-content:center;flex-wrap:wrap">
+      <button onclick="g2Answer('positivo')" style="
+        background:linear-gradient(135deg,#00d4aa,#2952ff);
+        color:#fff;border:none;padding:16px 36px;border-radius:50px;
+        font-size:16px;font-weight:800;cursor:pointer;font-family:'Nunito',sans-serif;
+        box-shadow:0 6px 20px rgba(0,212,170,.35);transition:transform .2s;
+        min-width:160px;
+      " onmouseover="this.style.transform='translateY(-3px) scale(1.04)'" onmouseout="this.style.transform=''">
+        💚 Positivo
+      </button>
+      <button onclick="g2Answer('dañino')" style="
+        background:linear-gradient(135deg,#ff1a6e,#7928ca);
+        color:#fff;border:none;padding:16px 36px;border-radius:50px;
+        font-size:16px;font-weight:800;cursor:pointer;font-family:'Nunito',sans-serif;
+        box-shadow:0 6px 20px rgba(255,26,110,.35);transition:transform .2s;
+        min-width:160px;
+      " onmouseover="this.style.transform='translateY(-3px) scale(1.04)'" onmouseout="this.style.transform=''">
+        🚫 Dañino
+      </button>
+    </div>
+  </div>
+  `;
+}
+
+function g2Answer(choice){
+  const card = g2State.deck[g2State.current];
+  const correct = choice === card.type;
+  if(correct){ g2State.score++; g2State.streak++; } else { g2State.streak=0; }
+  g2State.total++;
+
+  const btns = document.getElementById('g2-btns');
+  btns.innerHTML = '';
+
+  const fb = document.getElementById('g2-feedback');
+  fb.innerHTML = `
+    <div style="margin-bottom:18px;background:${correct?'rgba(0,212,170,.12)':'rgba(255,26,110,.12)'};
+      border-radius:14px;padding:16px 20px;border-left:4px solid ${correct?'#00d4aa':'#ff1a6e'}">
+      <div style="font-size:32px;margin-bottom:6px">${card.emoji}</div>
+      <p style="font-weight:800;color:#fff;margin-bottom:6px;font-size:15px">${correct?'¡Correcto!':'Incorrecto'} — Este mensaje es <span style="color:${correct?'#00d4aa':'#ff1a6e'}">${card.type.toUpperCase()}</span></p>
+      <p style="font-size:13px;color:#ccc;line-height:1.6">${card.explain}</p>
+      ${g2State.streak>=3?`<p style="margin-top:8px;font-size:13px;color:#ffd700;font-weight:700">🔥 ¡Racha de ${g2State.streak}! Estás en llamas</p>`:''}
+    </div>
+    <button onclick="g2Next()" style="
+      background:linear-gradient(135deg,#00d4aa,#2952ff);
+      color:#fff;border:none;padding:14px 36px;border-radius:50px;
+      font-size:15px;font-weight:800;cursor:pointer;font-family:'Nunito',sans-serif;
+      box-shadow:0 6px 20px rgba(41,82,255,.4);transition:transform .2s;margin-bottom:6px;
+    " onmouseover="this.style.transform='translateY(-2px)'" onmouseout="this.style.transform=''">
+      ${g2State.current+1 < g2State.deck.length ? 'Siguiente tarjeta →' : '🏆 Ver resultado'}
+    </button>
+  `;
+}
+
+function g2Next(){
+  if(g2State.current+1 < g2State.deck.length){
+    g2State.current++;
+    renderG2();
+  } else {
+    g2State.finished = true;
+    renderG2End();
+  }
+}
+
+function renderG2End(){
+  const c = document.getElementById('g2-container');
+  const pct = Math.round((g2State.score/g2State.deck.length)*100);
+  let medal='🥉', msg='Sigue practicando — identificar palabras dañinas es una habilidad que se entrena.', color='#f4845f';
+  if(pct>=85){medal='🏆';msg='¡Eres un experto/a en empatía! Sabes distinguir perfectamente las palabras que sanan de las que dañan.';color='#ffd700';}
+  else if(pct>=60){medal='🥈';msg='¡Muy buen ojo! Tienes buena intuición empática. Un poco más y llegarás al oro.';color='#b8b5d8';}
+
+  c.innerHTML = `
+  <div style="background:#1e1b4b;border-radius:24px;padding:40px 28px;text-align:center;border:2px solid rgba(0,212,170,.3);box-shadow:0 8px 40px rgba(0,0,0,.5);width:100%">
+    <div style="font-size:72px;margin-bottom:16px;animation:bounceIn .6s both">${medal}</div>
+    <h3 style="font-family:'Fredoka One',cursive;font-size:28px;color:#fff;margin-bottom:8px">¡Has terminado!</h3>
+    <div style="font-size:48px;font-family:'Fredoka One',cursive;color:${color};margin:12px 0">${g2State.score}<span style="font-size:20px;color:#b8b5d8"> / ${g2State.deck.length} correctas</span></div>
+    <div style="height:10px;background:#2a2560;border-radius:20px;overflow:hidden;margin:16px 0">
+      <div style="height:100%;width:${pct}%;background:linear-gradient(90deg,#00d4aa,#2952ff);border-radius:20px;transition:width 1s ease"></div>
+    </div>
+    <p style="font-size:15px;color:#e8e6ff;line-height:1.7;margin-bottom:24px;max-width:480px;margin-left:auto;margin-right:auto">${msg}</p>
+    <div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap">
+      <button onclick="g2Restart()" style="
+        background:linear-gradient(135deg,#00d4aa,#2952ff);
+        color:#fff;border:none;padding:14px 28px;border-radius:50px;
+        font-size:14px;font-weight:800;cursor:pointer;font-family:'Nunito',sans-serif;
+        box-shadow:0 6px 20px rgba(41,82,255,.4)">🔄 Jugar de nuevo</button>
+      <button onclick="showTab('juego1')" style="
+        background:linear-gradient(135deg,#ff6a00,#ee0979);
+        color:#fff;border:none;padding:14px 28px;border-radius:50px;
+        font-size:14px;font-weight:800;cursor:pointer;font-family:'Nunito',sans-serif;
+        box-shadow:0 6px 20px rgba(238,9,121,.4)">🎮 Probar el otro juego</button>
+    </div>
+  </div>
+  `;
+}
+
+function g2Restart(){
+  g2State = { deck: shuffle(g2Cards), current:0, score:0, streak:0, total:0, finished:false };
+  renderG2();
+}
+</script>
+</body>
+</html>
